@@ -2,6 +2,22 @@
 
 Project for the DataBase subject.
 
+# Dependencies
+
+```bash
+# check if already installed:
+flask --version
+
+sudo pip3 install flask
+
+# check if it's correctly installed:
+python3
+>>> import flask
+>>>                  # it's all right
+>>> from werkzeug.security import generate_password_hash, check_password_hash
+>>>                  # it's all right
+```
+
 # DataBase Setup
 
 To setup all configs of your database, you need to access your postgreSQL DMBS by `psql` or `pgadmin4`.
