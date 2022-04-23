@@ -1,6 +1,3 @@
-from sre_constants import SUCCESS
-
-
 
 
 SUCCESS_CODE    = 200
