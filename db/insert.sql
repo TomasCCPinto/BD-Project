@@ -54,16 +54,16 @@ insert into customer (id_user, name, nif, adress, email, password) values (30, '
 --insert into rating (id_rating, rating, comment, product_id_prod) values (10, 32, 'zyishbelkxppukaepmjennstkmbebyzloiqevb', 10);
 
 -- esta trocado! o rating tem de ter o id de usuario nao o buyer
-insert into buyer (bought, customer_id_user) values (false, 1);
-insert into buyer (bought, customer_id_user) values (true,  2);
-insert into buyer (bought, customer_id_user) values (true,  3);
-insert into buyer (bought, customer_id_user) values (true,  4);
-insert into buyer (bought, customer_id_user) values (false, 5);
-insert into buyer (bought, customer_id_user) values (true,  6);
-insert into buyer (bought, customer_id_user) values (false, 7);
-insert into buyer (bought, customer_id_user) values (false, 8);
-insert into buyer (bought, customer_id_user) values (false, 9);
-insert into buyer (bought, customer_id_user) values (true, 10);
+insert into buyer (bought, customer_id_user) values (false,20);
+insert into buyer (bought, customer_id_user) values (true, 19);
+insert into buyer (bought, customer_id_user) values (true, 18);
+insert into buyer (bought, customer_id_user) values (true, 17);
+insert into buyer (bought, customer_id_user) values (false,16);
+insert into buyer (bought, customer_id_user) values (true, 15);
+insert into buyer (bought, customer_id_user) values (false,14);
+insert into buyer (bought, customer_id_user) values (false,13);
+insert into buyer (bought, customer_id_user) values (false,12);
+insert into buyer (bought, customer_id_user) values (true, 11);
 
 
 insert into administrator (customer_id_user) values ( 1);
@@ -78,16 +78,16 @@ insert into administrator (customer_id_user) values ( 9);
 insert into administrator (customer_id_user) values (10);
 
 
-insert into seller (customer_id_user) values ( 1);
-insert into seller (customer_id_user) values ( 2);
-insert into seller (customer_id_user) values ( 3);
-insert into seller (customer_id_user) values ( 4);
-insert into seller (customer_id_user) values ( 5);
-insert into seller (customer_id_user) values ( 6);
-insert into seller (customer_id_user) values ( 7);
-insert into seller (customer_id_user) values ( 8);
-insert into seller (customer_id_user) values ( 9);
-insert into seller (customer_id_user) values (10);
+insert into seller (customer_id_user) values (30);
+insert into seller (customer_id_user) values (29);
+insert into seller (customer_id_user) values (28);
+insert into seller (customer_id_user) values (27);
+insert into seller (customer_id_user) values (26);
+insert into seller (customer_id_user) values (25);
+insert into seller (customer_id_user) values (24);
+insert into seller (customer_id_user) values (23);
+insert into seller (customer_id_user) values (22);
+insert into seller (customer_id_user) values (21);
 --
 --
 --insert into history (id_hist, description, stock, price, his_date, product_id_prod) values ( 1, 'fuupwsvrixvrxdejdgeauzkgiadkykhmeznkum', 78, 109, 1);
