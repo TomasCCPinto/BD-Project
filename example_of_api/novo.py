@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return {"message" : "Welcome to the mother fucker shop program!"}
+    return jsonify({"message" : "Welcome to the mother fucker shop program!"})
 
 @app.route('/<name>')
 def root_name(name):
@@ -28,7 +28,7 @@ def get_token(cursor):
 
     return ""
 
-@app.route('/login/<string:name>/<string:password>')
+@app.get('/login/<string:name>/<string:password>')
 def get_login(name, password):
     if name and password:
         conn   = connetion_db()
@@ -43,11 +43,11 @@ def get_login(name, password):
         if my_token != "":
 
             if check_password_hash(my_token, password):
-                return {"pass": "BEM-VINDO"}
+                return jsonify({"pass": "BEM-VINDO"})
             else:
-                return {"pass" : "A pass nao consta na base de dados"}
+                return jsonify({"pass" : "A pass nao consta na base de dados"})
         else:
-            return {"pass" : "O nome nao consta na base de dados"}
+            return jsonify({"pass" : "O nome nao consta na base de dados"})
 
     return jsonify({"message" : "please enter a name or pass"})
 
@@ -79,7 +79,7 @@ def set_register(name, nif, addr, email, my_p):
         cursor.execute(sql)
         cursor.close()
 
-        if get_register(cursor, 33, name, nif, addr, email, my_p):    
+        if get_register(cursor, 32, name, nif, addr, email, my_p):    
             return {"menssage": "CONGRATS! seja bem vindo"}
         else:
             return {'message': "User ja registado"}
