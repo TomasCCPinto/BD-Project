@@ -31,39 +31,39 @@ insert into customer (id_user, name, nif, adress, email, password) values (30, '
 
 
 
-insert into product (id_prod, description, stock, price, seller_customer_id_user) values (1, 'gfdgtatwiegwmmwgfofgpictpfvjkmskgqoiji', 52, 909, 1);
-insert into product (id_prod, description, stock, price, seller_customer_id_user) values (2, 'kafmglrshxrbwbnxbutpcadqtwmnywdtnmtgrm', 3, 600, 2);
-insert into product (id_prod, description, stock, price, seller_customer_id_user) values (3, 'ipewawttyvqvgfxqxhekutsexhkjihbluuzarv', 63, 937, 3);
-insert into product (id_prod, description, stock, price, seller_customer_id_user) values (4, 'ytfeomghbsjadvopeuvhxfjyrexrsehouakobl', 42, 928, 4);
-insert into product (id_prod, description, stock, price, seller_customer_id_user) values (5, 'dmqgmpashlmlzajzsbxcospmgoifzhohivmxsy', 18, 213, 5);
-insert into product (id_prod, description, stock, price, seller_customer_id_user) values (6, 'fzdonzqbevltnkuhxwsfnlavbiqjnmggmkbybf', 36, 444, 6);
-insert into product (id_prod, description, stock, price, seller_customer_id_user) values (7, 'uyckrpkrqafdojfdlfpsyajakjfnbcvqvikhpw', 98, 811, 7);
-insert into product (id_prod, description, stock, price, seller_customer_id_user) values (8, 'gstfnywgzxvuwufwgttmrosczbogbooekeswep', 20, 535, 8);
-insert into product (id_prod, description, stock, price, seller_customer_id_user) values (9, 'hrvqtkdtekozmnivybkoathhpnjpwjlzvdaoqp', 19, 719, 9);
-insert into product (id_prod, description, stock, price, seller_customer_id_user) values (10, 'gpcmwzgsciiskazjdhjggsoertnrtlfxniwizu', 67, 32, 10);
+--insert into product (id_prod, description, stock, price, seller_customer_id_user) values (1, 'gfdgtatwiegwmmwgfofgpictpfvjkmskgqoiji', 52, 909, 1);
+--insert into product (id_prod, description, stock, price, seller_customer_id_user) values (2, 'kafmglrshxrbwbnxbutpcadqtwmnywdtnmtgrm', 3, 600, 2);
+--insert into product (id_prod, description, stock, price, seller_customer_id_user) values (3, 'ipewawttyvqvgfxqxhekutsexhkjihbluuzarv', 63, 937, 3);
+--insert into product (id_prod, description, stock, price, seller_customer_id_user) values (4, 'ytfeomghbsjadvopeuvhxfjyrexrsehouakobl', 42, 928, 4);
+--insert into product (id_prod, description, stock, price, seller_customer_id_user) values (5, 'dmqgmpashlmlzajzsbxcospmgoifzhohivmxsy', 18, 213, 5);
+--insert into product (id_prod, description, stock, price, seller_customer_id_user) values (6, 'fzdonzqbevltnkuhxwsfnlavbiqjnmggmkbybf', 36, 444, 6);
+--insert into product (id_prod, description, stock, price, seller_customer_id_user) values (7, 'uyckrpkrqafdojfdlfpsyajakjfnbcvqvikhpw', 98, 811, 7);
+--insert into product (id_prod, description, stock, price, seller_customer_id_user) values (8, 'gstfnywgzxvuwufwgttmrosczbogbooekeswep', 20, 535, 8);
+--insert into product (id_prod, description, stock, price, seller_customer_id_user) values (9, 'hrvqtkdtekozmnivybkoathhpnjpwjlzvdaoqp', 19, 719, 9);
+--insert into product (id_prod, description, stock, price, seller_customer_id_user) values (10, 'gpcmwzgsciiskazjdhjggsoertnrtlfxniwizu', 67, 32, 10);
 
-insert into rating (id_rating, rating, comment, product_id_prod) values (1, 80, 'aqgkrgwdlfgtulzqyqjaxqkqcfmjlnltmrogpq', 1);
-insert into rating (id_rating, rating, comment, product_id_prod) values (2, 69, 'edazhxmejzjaoqdptqvjricrdhteofsbzfdbem', 2);
-insert into rating (id_rating, rating, comment, product_id_prod) values (3, 61, 'gihkgniajcfodtznqrogcsqibbimlsayptkrtw', 3);
-insert into rating (id_rating, rating, comment, product_id_prod) values (4, 38, 'afveefvszwblsihtaoewcyyeicioksayafahhv', 4);
-insert into rating (id_rating, rating, comment, product_id_prod) values (5, 48, 'hewpbztnozdmksrvgfhvhhptwuvctlslouvjta', 5);
-insert into rating (id_rating, rating, comment, product_id_prod) values (6, 7, 'ccdtohrksomosegcikrszgfnexbouhwgtacihf', 6);
-insert into rating (id_rating, rating, comment, product_id_prod) values (7, 42, 'gladzvnaahpggqonwhmagqrfvrjuziyngwftiq', 7);
-insert into rating (id_rating, rating, comment, product_id_prod) values (8, 46, 'wdnyafjflenvnzmciouarrrbmjxaxdoagrwsks', 8);
-insert into rating (id_rating, rating, comment, product_id_prod) values (9, 54, 'ixjuxaeiodwmqcuwqjyuhhfgaqpimbrbgryxik', 9);
-insert into rating (id_rating, rating, comment, product_id_prod) values (10, 32, 'zyishbelkxppukaepmjennstkmbebyzloiqevb', 10);
+--insert into rating (id_rating, rating, comment, product_id_prod) values (1, 80, 'aqgkrgwdlfgtulzqyqjaxqkqcfmjlnltmrogpq', 1);
+--insert into rating (id_rating, rating, comment, product_id_prod) values (2, 69, 'edazhxmejzjaoqdptqvjricrdhteofsbzfdbem', 2);
+--insert into rating (id_rating, rating, comment, product_id_prod) values (3, 61, 'gihkgniajcfodtznqrogcsqibbimlsayptkrtw', 3);
+--insert into rating (id_rating, rating, comment, product_id_prod) values (4, 38, 'afveefvszwblsihtaoewcyyeicioksayafahhv', 4);
+--insert into rating (id_rating, rating, comment, product_id_prod) values (5, 48, 'hewpbztnozdmksrvgfhvhhptwuvctlslouvjta', 5);
+--insert into rating (id_rating, rating, comment, product_id_prod) values (6, 7, 'ccdtohrksomosegcikrszgfnexbouhwgtacihf', 6);
+--insert into rating (id_rating, rating, comment, product_id_prod) values (7, 42, 'gladzvnaahpggqonwhmagqrfvrjuziyngwftiq', 7);
+--insert into rating (id_rating, rating, comment, product_id_prod) values (8, 46, 'wdnyafjflenvnzmciouarrrbmjxaxdoagrwsks', 8);
+--insert into rating (id_rating, rating, comment, product_id_prod) values (9, 54, 'ixjuxaeiodwmqcuwqjyuhhfgaqpimbrbgryxik', 9);
+--insert into rating (id_rating, rating, comment, product_id_prod) values (10, 32, 'zyishbelkxppukaepmjennstkmbebyzloiqevb', 10);
 
 -- esta trocado! o rating tem de ter o id de usuario nao o buyer
-insert into buyer (bought, rating_id_rating, customer_id_user) values (false, 1,  1);
-insert into buyer (bought, rating_id_rating, customer_id_user) values (true,  2,  2);
-insert into buyer (bought, rating_id_rating, customer_id_user) values (true,  3,  3);
-insert into buyer (bought, rating_id_rating, customer_id_user) values (true,  4,  4);
-insert into buyer (bought, rating_id_rating, customer_id_user) values (false, 5,  5);
-insert into buyer (bought, rating_id_rating, customer_id_user) values (true,  6,  6);
-insert into buyer (bought, rating_id_rating, customer_id_user) values (false, 7,  7);
-insert into buyer (bought, rating_id_rating, customer_id_user) values (false, 8,  8);
-insert into buyer (bought, rating_id_rating, customer_id_user) values (false, 9,  9);
-insert into buyer (bought, rating_id_rating, customer_id_user) values (true, 10, 10);
+insert into buyer (bought, customer_id_user) values (false, 1);
+insert into buyer (bought, customer_id_user) values (true,  2);
+insert into buyer (bought, customer_id_user) values (true,  3);
+insert into buyer (bought, customer_id_user) values (true,  4);
+insert into buyer (bought, customer_id_user) values (false, 5);
+insert into buyer (bought, customer_id_user) values (true,  6);
+insert into buyer (bought, customer_id_user) values (false, 7);
+insert into buyer (bought, customer_id_user) values (false, 8);
+insert into buyer (bought, customer_id_user) values (false, 9);
+insert into buyer (bought, customer_id_user) values (true, 10);
 
 
 insert into administrator (customer_id_user) values ( 1);
