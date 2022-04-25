@@ -33,8 +33,6 @@ def tokenise():
     conn.close()
     print("tokenised")
 
-if __name__ == "__main__":
-    #print(generate_password_hash(password="ntex4g"))
-    print(check_password_hash("pbkdf2:sha256:260000$bi1hLoumJktcy3rI$29728717be72c39b95257301e103f5bb1399328a2f88fc42e8079dc50257434d","zUeWpD1vyTs"))
-    #tokenise()
+if __name__ == "__main__": 
+    tokenise()
     
