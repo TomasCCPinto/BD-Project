@@ -7,8 +7,8 @@ DROP TABLE IF EXISTS campaign;            -- check
 DROP TABLE IF EXISTS administrator;       -- check
 DROP TABLE IF EXISTS features;            -- check
 DROP TABLE IF EXISTS history;             -- check
-DROP TABLE IF EXISTS buyer;               -- check
 DROP TABLE IF EXISTS rating;              -- check
+DROP TABLE IF EXISTS buyer;               -- check
 DROP TABLE IF EXISTS product;             -- check
 DROP TABLE IF EXISTS seller;              -- check
 DROP TABLE IF EXISTS customer;            -- check
