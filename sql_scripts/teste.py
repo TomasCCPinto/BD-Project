@@ -22,8 +22,6 @@ def tokenise():
     cont=1
     for x in rows:
         token = generate_password_hash(password=x[0])
-        print(x[0])
-        print(token)
         print(check_password_hash(token,x[0]))
         
         pointer.execute(f"UPDATE customer SET password='{token}' WHERE id_user={cont}")
