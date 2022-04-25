@@ -1,5 +1,5 @@
 CREATE TABLE product (
-	id_prod		 BIGINT,
+	id_prod		 	BIGSERIAL,
 	description		 VARCHAR(512) NOT NULL,
 	stock			 BIGINT NOT NULL,
 	price			 FLOAT(8) NOT NULL,
@@ -49,17 +49,19 @@ CREATE TABLE history (
 );
 
 CREATE TABLE customer (
-	id_user	 BIGINT,
+	id_user	 BIGSERIAL NOT NULL,
 	name	 VARCHAR(512) NOT NULL,
-	nif	 BIGINT NOT NULL,
+	nif	 	 BIGINT NOT NULL,
 	adress	 VARCHAR(512) NOT NULL,
 	email	 VARCHAR(512) NOT NULL,
 	password VARCHAR(512) NOT NULL,
+
 	PRIMARY KEY(id_user)
 );
 
 CREATE TABLE administrator (
 	customer_id_user BIGINT,
+	
 	PRIMARY KEY(customer_id_user)
 );
 

@@ -2,10 +2,12 @@ import __init__ as init
 
 
 def main():
+    """
+    the core of API Rest 
+    """
+
     app = init.creat_app()
-
     app.run(debug=True)
-
 
 
 if __name__ == "__main__":

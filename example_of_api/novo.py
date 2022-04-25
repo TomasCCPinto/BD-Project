@@ -1,4 +1,3 @@
-from email import message
 from flask import Flask, jsonify, request
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -35,8 +34,8 @@ def get_login(name, password):
         cursor = conn.cursor()
         sql    = f"SELECT * FROM customer WHERE name like '{name}'"
         cursor.execute(sql)
+        my_token = cursor.fetchall()
 
-        my_token = get_token(cursor)
         cursor.close()
         conn.close()
 

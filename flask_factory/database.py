@@ -17,6 +17,3 @@ def get_data_base():
     dataBase = psy.connect(user = USER, password = PASS, host = HOST, port = PORT, database = DBASE)
 
     return dataBase
-
-
-
