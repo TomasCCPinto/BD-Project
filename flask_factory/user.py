@@ -7,59 +7,76 @@ import database.db as db
 user = Blueprint("user", __name__, url_prefix="/api/")
 
 
-@user.route("/login", methods=["get", "post", "put"])
+@user.route("/login", methods=["put"])
 def login():
     # get and check args
-    args = request.get_json()
-    if "email" not in args or "password" not in args:
+    try:
+        args = request.get_json()
+    except:
+        return jsonify({
+            "status": GET_ERROR_CODE,
+            "error": "No json"
+        })
+
+    if "username" not in args or "password" not in args:
         return jsonify({
             "code": GET_ERROR_CODE,
             "message": "Wrong parameters"
         })
 
-    mail     = args["email"]
+    username = args["username"]
     password = args["password"]
 
-    query   = f"SELECT id_user, name, password FROM customer WHERE email like '{mail}';"
+    query   = f"SELECT id_user, name, password FROM customer WHERE name like '{username}';"
     message = {}
 
     try:
         with db.get_data_base() as conn:
             with conn.cursor() as cursor:
-
+                
+                print("HERE")
                 cursor.execute(query)
+                print("HERE")
                 row    = cursor.fetchall()[0]
+                print("HERE")
 
                 if cursor.rowcount == 0:
-                    message["code"]    = GET_ERROR_CODE
-                    message["message"] = "No user witth that credentials"
+                    message["status"] = GET_ERROR_CODE
+                    message["error"]  = "No user witth that credentials (username)"
 
-                if check_password_hash(row[2], password):
-                    message["code"]    = SUCCESS_CODE
-                    message["message"] = "logged in"
+                elif check_password_hash(row[2], password):
+                    message["status"] = SUCCESS_CODE
+                    message["token"]  = row[2]
                 else:
-                    message["code4"]   = SUCCESS_CODE
-                    message["message"] = "Wrong password"
+                    message["status"] = GET_ERROR_CODE
+                    message["error"]  = "Wrong password"
 
     except:
         return jsonify({
-            "code": POST_ERROR_CODE,
-            "message": "Something wrong happened"
+            "status": POST_ERROR_CODE,
+            "error":  "Something wrong happened"
         })
 
     return jsonify(message)
 
 
-@user.route("/register", methods = ["get", "post", "put"])
+@user.route("/register", methods = ["post"])
 def register():
 
     # get and check args
-    args = request.get_json()
+    try:
+        args = request.get_json()
+    except:
+        return jsonify({
+            "status": GET_ERROR_CODE,
+            "error": "No json"
+        })
+
     if "name" not in args or "nif" not in args or "adress" not in args or "email" not in args or "password" not in args:
 
         return jsonify({
-            "code": GET_ERROR_CODE,
-            "message": "Wrong parameters"
+            "status": GET_ERROR_CODE,
+            "error": "Wrong parameters"
         })
 
     name     = args["name"]
@@ -67,11 +84,9 @@ def register():
     adress   = args["adress"]
     email    = args["email"]
     password = generate_password_hash(args["password"])
-    
-    # check if admin it is loged in to add -> only admin can add users
 
     # check if person alredy register
-    query = f"SELECT id_user FROM customer WHERE email like '{email}'"
+    query   = f"SELECT * FROM customer WHERE email like '{name}'"
     message = {}
 
     try:
@@ -80,24 +95,23 @@ def register():
                 cursor.execute(query)
 
                 if cursor.rowcount == 0:
-                    query = f"INSERT INTO customer (name, nif, adress, email, password) VALUES ('{name}', '{nif}', '{adress}', '{email}', '{password}');"
+                    query = f"INSERT INTO customer (name, nif, adress, email, password) VALUES ('{name}', '{nif}', '{adress}', '{email}', '{password}'); SELECT currval('customer_id_user_seq');"
 
-                    print("here")
                     cursor.execute(query)
-                    print("here")
+                    row   = cursor.fetchall()[0]
 
-                    message["code"]    = SUCCESS_CODE
+                    message["status"]  = SUCCESS_CODE
                     message["message"] = "Regist completed"
+                    message["results"] = row
 
                 else:
-                    print("here2")
-                    message["code"]    = GET_ERROR_CODE
-                    message["message"] = "Email already registed"
+                    message["status"] = GET_ERROR_CODE
+                    message["error"]  = "Username already registed"
 
     except:
         return jsonify({
-            "code": POST_ERROR_CODE,
-            "message": "Something wrong happened"
+            "status": POST_ERROR_CODE,
+            "error": "Something wrong happened"
         })
 
 
