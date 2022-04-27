@@ -102,7 +102,7 @@ def register():
 
                     message["status"]  = SUCCESS_CODE
                     message["message"] = "Regist completed"
-                    message["results"] = row
+                    message["results"] = row[0]
 
                 else:
                     message["status"] = GET_ERROR_CODE

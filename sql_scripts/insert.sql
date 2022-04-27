@@ -67,16 +67,16 @@ insert into seller (customer_id_user) values (22);
 insert into seller (customer_id_user) values (21);
 
 
-insert into product (id_prod, name, description, stock, price, seller_customer_id_user) values ( 1, 'computador', 'gfdgtatwiegwmmwgfofgpictpfvjkmskgqoiji', 52, 909, 30);
-insert into product (id_prod, name, description, stock, price, seller_customer_id_user) values ( 2, 'computador', 'kafmglrshxrbwbnxbutpcadqtwmnywdtnmtgrm',  3, 600, 29);
-insert into product (id_prod, name, description, stock, price, seller_customer_id_user) values ( 3, 'computador', 'ipewawttyvqvgfxqxhekutsexhkjihbluuzarv', 63, 937, 28);
-insert into product (id_prod, name, description, stock, price, seller_customer_id_user) values ( 4, 'TV',         'ytfeomghbsjadvopeuvhxfjyrexrsehouakobl', 42, 928, 27);
-insert into product (id_prod, name, description, stock, price, seller_customer_id_user) values ( 5, 'TV',         'dmqgmpashlmlzajzsbxcospmgoifzhohivmxsy', 18, 213, 26);
-insert into product (id_prod, name, description, stock, price, seller_customer_id_user) values ( 6, 'TV',         'fzdonzqbevltnkuhxwsfnlavbiqjnmggmkbybf', 36, 444, 25);
-insert into product (id_prod, name, description, stock, price, seller_customer_id_user) values ( 7, 'Smartphone', 'uyckrpkrqafdojfdlfpsyajakjfnbcvqvikhpw', 98, 811, 24);
-insert into product (id_prod, name, description, stock, price, seller_customer_id_user) values ( 8, 'Smartphone', 'gstfnywgzxvuwufwgttmrosczbogbooekeswep', 20, 535, 23);
-insert into product (id_prod, name, description, stock, price, seller_customer_id_user) values ( 9, 'Smartphone', 'hrvqtkdtekozmnivybkoathhpnjpwjlzvdaoqp', 19, 719, 22);
-insert into product (id_prod, name, description, stock, price, seller_customer_id_user) values (10, 'Smartphone', 'gpcmwzgsciiskazjdhjggsoertnrtlfxniwizu', 67,  32, 21);
+insert into product (name, description, stock, price, seller_customer_id_user) values ('computador', 'kafmglrshxrbwbnxbutpcadqtwmnywdtnmtgrm',  3, 600, 29);
+insert into product (name, description, stock, price, seller_customer_id_user) values ('computador', 'gfdgtatwiegwmmwgfofgpictpfvjkmskgqoiji', 52, 909, 30);
+insert into product (name, description, stock, price, seller_customer_id_user) values ('computador', 'ipewawttyvqvgfxqxhekutsexhkjihbluuzarv', 63, 937, 28);
+insert into product (name, description, stock, price, seller_customer_id_user) values ('TV',         'ytfeomghbsjadvopeuvhxfjyrexrsehouakobl', 42, 928, 27);
+insert into product (name, description, stock, price, seller_customer_id_user) values ('TV',         'dmqgmpashlmlzajzsbxcospmgoifzhohivmxsy', 18, 213, 26);
+insert into product (name, description, stock, price, seller_customer_id_user) values ('TV',         'fzdonzqbevltnkuhxwsfnlavbiqjnmggmkbybf', 36, 444, 25);
+insert into product (name, description, stock, price, seller_customer_id_user) values ('Smartphone', 'uyckrpkrqafdojfdlfpsyajakjfnbcvqvikhpw', 98, 811, 24);
+insert into product (name, description, stock, price, seller_customer_id_user) values ('Smartphone', 'gpcmwzgsciiskazjdhjggsoertnrtlfxniwizu', 67,  32, 21);
+insert into product (name, description, stock, price, seller_customer_id_user) values ('Smartphone', 'gstfnywgzxvuwufwgttmrosczbogbooekeswep', 20, 535, 23);
+insert into product (name, description, stock, price, seller_customer_id_user) values ('Smartphone', 'hrvqtkdtekozmnivybkoathhpnjpwjlzvdaoqp', 19, 719, 22);
 
 insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values ( 1, 5, 'aqgkrgwdlfgtulzqyqjaxqkqcfmjlnltmrogpq', 19,  1);
 insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values ( 2, 3, 'edazhxmejzjaoqdptqvjricrdhteofsbzfdbem', 18,  2);
