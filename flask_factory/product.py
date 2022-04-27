@@ -19,10 +19,47 @@ def add_product():
             "status": GET_ERROR_CODE,
             "error": "No json"
         })
-    if "" not in args or "nif" not in args or "adress" not in args or "email" not in args or "password" not in args:
+    if "name" not in args or "description" not in args or "stock" not in args or "price" not in args or "seller_customer_id_user" not in args:
 
         return jsonify({
             "status": GET_ERROR_CODE,
             "error": "Wrong parameters"
         })
+    
+    name     = args["name"]
+    description      = args["description"]
+    stock   = args["stock"]
+    price    = args["price"]
+    seller_customer_id_user  = args["seller_customer_id_user"]
 
+    query   = f"SELECT * FROM product WHERE name like '{name}' and seller_customer_id_user = {seller_customer_id_user}"
+    message = {}
+
+    try:
+        with db.get_data_base() as conn:
+            with conn.cursor() as cursor:
+                print("aquii")
+                cursor.execute(query)
+
+                if cursor.rowcount == 0:
+                    query = f"INSERT INTO product (name, description, stock, price, seller_customer_id_user ) VALUES ('{name}', '{description}', {stock}, {price}, {seller_customer_id_user}); SELECT currval('product_id_prod_seq');"
+
+                    cursor.execute(query)
+                    row   = cursor.fetchall()[0]
+
+                    message["status"]  = SUCCESS_CODE
+                    message["message"] = "Product added successfully"
+                    message["results"] = row[0]
+
+                else:
+                    message["status"] = GET_ERROR_CODE
+                    message["error"]  = "product already registed"
+
+    except:
+        return jsonify({
+            "status": POST_ERROR_CODE,
+            "error": "Something wrong happened"
+        })
+
+
+    return jsonify(message)
