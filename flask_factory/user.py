@@ -1,5 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Blueprint, jsonify, request
+from flask_jwt_extended import create_access_token, decode_token
+from modules.User import User
 
 from status.status import *
 import database.db as db
@@ -34,19 +36,19 @@ def login():
         with db.get_data_base() as conn:
             with conn.cursor() as cursor:
                 
-                print("HERE")
                 cursor.execute(query)
-                print("HERE")
                 row    = cursor.fetchall()[0]
-                print("HERE")
 
                 if cursor.rowcount == 0:
                     message["status"] = GET_ERROR_CODE
                     message["error"]  = "No user witth that credentials (username)"
 
                 elif check_password_hash(row[2], password):
+                    user = User(row[0], row[1], row[2])
+                    token             = create_access_token(identity=user.attributes)
                     message["status"] = SUCCESS_CODE
-                    message["token"]  = row[2]
+                    message["token"]  = token
+                    message["read"]   = decode_token(token)     # tomas delete this when you understand how to use tokens
                 else:
                     message["status"] = GET_ERROR_CODE
                     message["error"]  = "Wrong password"
