@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from status.status import *
 from user import user
+from product import product
 
 def creat_app(test_config = None):
 
@@ -12,6 +13,7 @@ def creat_app(test_config = None):
         return jsonify({"code": SUCCESS_CODE, "message" : "Welcome to our data base"})
 
     app.register_blueprint(user)
+    app.register_blueprint(product)
 
     return app
 
