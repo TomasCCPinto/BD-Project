@@ -1,5 +1,6 @@
 CREATE TABLE product (
 	id_prod		 	BIGSERIAL,
+	name			VARCHAR(50) NOT NULL,
 	description		 VARCHAR(512) NOT NULL,
 	stock			 BIGINT NOT NULL,
 	price			 FLOAT(8) NOT NULL,
@@ -33,7 +34,8 @@ CREATE TABLE rating (
 	id_rating		 BIGINT,
 	rating		 INTEGER NOT NULL,
 	comment		 VARCHAR(512),
-	buyer_customer_id_user BIGINT UNIQUE NOT NULL,
+	--this pair should be unique
+	buyer_customer_id_user BIGINT NOT NULL,
 	product_id_prod	 BIGINT NOT NULL,
 	PRIMARY KEY(id_rating)
 );
@@ -41,9 +43,8 @@ CREATE TABLE rating (
 CREATE TABLE history (
 	id_hist	 BIGINT NOT NULL,
 	description	 VARCHAR(512) NOT NULL,
-	stock		 BIGINT NOT NULL,
 	price		 FLOAT(8) NOT NULL,
-	his_date	 DATE NOT NULL,
+	his_date	 DATE,
 	product_id_prod BIGINT NOT NULL
 );
 
