@@ -19,7 +19,6 @@ CREATE TABLE seller (
 );
 
 CREATE TABLE buyer (
-	bought		 BOOL NOT NULL,
 	customer_id_user BIGINT,
 	PRIMARY KEY(customer_id_user)
 );
