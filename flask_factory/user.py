@@ -86,7 +86,7 @@ def register():
     password = generate_password_hash(args["password"])
 
     # check if person alredy register
-    query   = f"SELECT * FROM customer WHERE email like '{name}'"
+    query   = f"SELECT * FROM customer WHERE name like '{name}'"
     message = {}
 
     try:

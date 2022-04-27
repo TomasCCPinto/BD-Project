@@ -1,9 +1,7 @@
 
-from crypt import methods
-from numpy import product
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Blueprint, jsonify, request
-
+#status e database
 from status.status import *
 import database.db as db
 
