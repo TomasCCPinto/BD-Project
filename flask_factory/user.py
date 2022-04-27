@@ -1,8 +1,8 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Blueprint, jsonify, request
 
-from status import *
-import database as db
+from status.status import *
+import database.db as db
 
 user = Blueprint("user", __name__, url_prefix="/api/")
 

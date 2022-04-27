@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from status import *
+from status.status import *
 from user import user
 
 def creat_app(test_config = None):
