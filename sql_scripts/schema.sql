@@ -20,7 +20,7 @@ CREATE TABLE seller (
 );
 
 CREATE TABLE buyer (
-	customer_id_user BIGSERIAL,
+	customer_id_user BIGINT,
 	PRIMARY KEY(customer_id_user)
 );
 
