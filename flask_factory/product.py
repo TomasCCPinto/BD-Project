@@ -63,3 +63,60 @@ def add_product():
 
 
     return jsonify(message)
+
+
+#ERRO NA SEGUNDA QUERY PROBABLY
+@product.route("/<int:prod_id>", methods = ["POST"])
+def refresh_product(prod_id):
+
+    try:
+        args = request.get_json()
+    except:
+        return jsonify({
+            "status": GET_ERROR_CODE,
+            "error": "No json"
+        })
+
+    if "description" not in args or "price" not in args:
+
+        return jsonify({
+            "status": GET_ERROR_CODE,
+            "error": "Wrong parameters"
+        })
+    
+    description = args["description"]
+    price = args["price"]
+
+
+    query   = f"SELECT * FROM product WHERE id_prod = {prod_id}"
+    message = {}
+
+    try:
+        with db.get_data_base() as conn:
+            with conn.cursor() as cursor:
+                cursor.execute(query)
+
+                if cursor.rowcount ==0:
+                    message["status"] = GET_ERROR_CODE
+                    message["error"]  = "Product id invalid"
+
+                else:
+                    #ERRO AQUI PROBABLY
+                    query = f"UPDATE product SET description = '{description}', price = {price} WHERE id_prod = {prod_id};"
+
+                    cursor.execute(query)
+                    row   = cursor.fetchall()[0]
+
+                    message["status"]  = SUCCESS_CODE
+                    message["message"] = "Product values updated"
+                    message["results"] = row[0]
+
+
+    except:
+        return jsonify({
+            "status": POST_ERROR_CODE,
+            "error": "Something wrong happened"
+        })
+
+
+    return jsonify(message)
