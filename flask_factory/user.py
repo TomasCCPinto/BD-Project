@@ -77,14 +77,11 @@ def register():
         })
 
 
-    """
-                                                        REGISTO DE SELLER OU ADMINS 
-    """
 
     message = {}
 
-
-    if "name" in args and "nif" in args and "adress" in args and "email" in args and "password" in args and "token" in args and "user_type" in args:
+    #                           REGISTO DE SELLER OU ADMINS
+    if "username" in args and "nif" in args and "adress" in args and "email" in args and "password" in args and "token" in args and "user_type" in args:
 
         type_U = args["user_type"]
         if type_U != "administrator" and type_U != "seller":
@@ -95,7 +92,7 @@ def register():
             })
 
 
-        name     = args["name"]
+        username = args["username"]
         nif      = args["nif"]
         adress   = args["adress"]
         email    = args["email"]
@@ -103,25 +100,34 @@ def register():
         token    = decode_token(args["token"])
         admin_id = token["sub"]["id"]
 
-        query   = f"SELECT * FROM administrator WHERE customer_id_user = '{admin_id}';"
+        queryAdm = f"SELECT * FROM administrator WHERE customer_id_user = '{admin_id}';"
+        queryUsr = f"SELECT name FROM customer WHERE name like '{username}';"
 
         try:
             with db.get_data_base() as conn:
                 with conn.cursor() as cursor:
-                    cursor.execute(query)
+                    cursor.execute(queryAdm)
 
                     if cursor.rowcount != 0:
-                        query = f"INSERT INTO customer (name, nif, adress, email, password) VALUES ('{name}', '{nif}', '{adress}', '{email}', '{password}'); SELECT currval('customer_id_user_seq');"
-                        cursor.execute(query)
-                        row   = cursor.fetchall()[0]
+                        cursor.execute(queryUsr)
 
-                        query = f"INSERT INTO {type_U} VALUES ('{row[0]}');"
-                        cursor.execute(query)
+                        if cursor.rowcount == 0:
 
-                        message["status"]  = SUCCESS_CODE
-                        message["message"] = "Regist completed"
-                        message["user_id"] = row[0]
-                        
+                            query = f"INSERT INTO customer (name, nif, adress, email, password) VALUES ('{username}', '{nif}', '{adress}', '{email}', '{password}'); SELECT currval('customer_id_user_seq');"
+                            cursor.execute(query)
+                            row   = cursor.fetchall()[0]
+
+                            query = f"INSERT INTO {type_U} VALUES ('{row[0]}');"
+                            cursor.execute(query)
+
+                            message["status"]  = SUCCESS_CODE
+                            message["message"] = "Regist completed"
+                            message["result"] = row[0]
+
+                        else:
+                            message["status"] = GET_ERROR_CODE
+                            message["error"]  = "Username already registed"
+
 
                     else:
                         message["status"] = GET_ERROR_CODE
@@ -136,16 +142,16 @@ def register():
             })
 
     #                                                   REGISTO DE BUYERS
-    elif "name" in args and "nif" in args and "adress" in args and "email" in args and "password" in args:
+    elif "username" in args and "nif" in args and "adress" in args and "email" in args and "password" in args:
 
-        name     = args["name"]
+        username = args["username"]
         nif      = args["nif"]
         adress   = args["adress"]
         email    = args["email"]
         password = generate_password_hash(args["password"])
 
         # check if person alredy register
-        query   = f"SELECT * FROM customer WHERE name like '{name}'"
+        query   = f"SELECT * FROM customer WHERE name like '{username}'"
 
         try:
             with db.get_data_base() as conn:
@@ -153,7 +159,7 @@ def register():
                     cursor.execute(query)
 
                     if cursor.rowcount == 0:
-                        query = f"INSERT INTO customer (name, nif, adress, email, password) VALUES ('{name}', '{nif}', '{adress}', '{email}', '{password}'); SELECT currval('customer_id_user_seq');"
+                        query = f"INSERT INTO customer (name, nif, adress, email, password) VALUES ('{username}', '{nif}', '{adress}', '{email}', '{password}'); SELECT currval('customer_id_user_seq');"
                         cursor.execute(query)
                         row   = cursor.fetchall()[0]
 
@@ -162,7 +168,7 @@ def register():
 
                         message["status"]  = SUCCESS_CODE
                         message["message"] = "Regist completed"
-                        message["user_id"] = row[0]
+                        message["result"] = row[0]
 
                     else:
                         message["status"] = GET_ERROR_CODE
