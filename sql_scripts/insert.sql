@@ -1,4 +1,4 @@
-insert into customer (name, nif, adress, email, password) values ('Del Maddick', 272723389, '85 Kipling Crossing', 'dmaddick0@posterous.com', 'zUeWpD1vyTs');
+insert into customer (name, nif, adress, email, password) values ('SuperAdmin', 272723389, '85 Kipling Crossing', 'dmaddick0@posterous.com', 'SuperAdmin');
 insert into customer (name, nif, adress, email, password) values ('Ophelia Barson', 285448224, '50851 7th Crossing', 'obarson1@mtv.com', 'ntex4g');
 insert into customer (name, nif, adress, email, password) values ('Blaine Klimko', 148261745, '43 Everett Center', 'bklimko2@gizmodo.com', 'fYkLN61Ij');
 insert into customer (name, nif, adress, email, password) values ('Oralie Parfitt', 584176182, '4 Blackbird Pass', 'oparfitt3@amazon.com', 'jrheVXC');
