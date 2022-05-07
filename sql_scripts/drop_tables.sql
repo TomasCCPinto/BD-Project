@@ -5,8 +5,6 @@ DROP TABLE IF EXISTS quantity;            -- check
 DROP TABLE IF EXISTS to_order;            -- check
 DROP TABLE IF EXISTS campaign;            -- check
 DROP TABLE IF EXISTS administrator;       -- check
-DROP TABLE IF EXISTS features;            -- check
-DROP TABLE IF EXISTS history;             -- check
 DROP TABLE IF EXISTS rating;              -- check
 DROP TABLE IF EXISTS product;             -- check
 DROP TABLE IF EXISTS buyer;               -- check

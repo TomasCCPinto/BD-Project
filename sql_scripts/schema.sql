@@ -1,9 +1,8 @@
 CREATE TABLE product (
-	id_prod		 BIGINT,
-	description		 TEXT(512) NOT NULL,
+	id_prod		  BIGSERIAL,
+	description		 VARCHAR(512) NOT NULL,
 	stock			 BIGINT NOT NULL,
 	price			 FLOAT(8) NOT NULL,
-	name			 VARCHAR(512) NOT NULL,
 	type			 VARCHAR(512) NOT NULL,
 	weight			 INTEGER NOT NULL,
 	height			 INTEGER NOT NULL,
@@ -32,19 +31,19 @@ CREATE TABLE to_order (
 CREATE TABLE rating (
 	id_rating		 BIGINT,
 	rating		 INTEGER NOT NULL,
-	comment		 TEXT(512),
-	buyer_customer_id_user BIGINT UNIQUE NOT NULL,
+	comment		 VARCHAR(512),
+	buyer_customer_id_user BIGINT NOT NULL,
 	product_id_prod	 BIGINT NOT NULL,
 	PRIMARY KEY(id_rating)
 );
 
 CREATE TABLE customer (
-	id_user	 BIGINT,
+	id_user	 BIGSERIAL,
 	name	 VARCHAR(512) NOT NULL,
 	nif	 BIGINT NOT NULL,
 	adress	 VARCHAR(512) NOT NULL,
-	email	 TEXT(512) NOT NULL,
-	password TEXT(512) NOT NULL,
+	email	 VARCHAR(512) NOT NULL,
+	password VARCHAR(512) NOT NULL,
 	PRIMARY KEY(id_user)
 );
 
@@ -55,9 +54,9 @@ CREATE TABLE administrator (
 
 CREATE TABLE forum_notifications (
 	if_forum			 BIGINT,
-	comment			 TEXT(512) NOT NULL,
+	comment			 VARCHAR(512) NOT NULL,
 	notifications_id		 BIGINT UNIQUE NOT NULL,
-	notifications_message	 TEXT(512) NOT NULL,
+	notifications_message	 VARCHAR(512) NOT NULL,
 	notifications_time_stamp	 TIMESTAMP NOT NULL,
 	notifications_was_read	 BOOL NOT NULL,
 	customer_id_user		 BIGINT NOT NULL,
