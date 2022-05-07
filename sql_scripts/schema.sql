@@ -7,7 +7,7 @@ CREATE TABLE product (
 	weight			 INTEGER NOT NULL,
 	height			 INTEGER NOT NULL,
 	colour			 VARCHAR(512) NOT NULL,
-	product_id_prod	 BIGINT UNIQUE,
+	product_id_prod	 BIGINT,
 	seller_customer_id_user BIGINT NOT NULL,
 	PRIMARY KEY(id_prod)
 );
