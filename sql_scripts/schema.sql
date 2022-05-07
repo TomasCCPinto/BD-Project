@@ -4,15 +4,13 @@ CREATE TABLE product (
 	stock			 BIGINT NOT NULL,
 	price			 FLOAT(8) NOT NULL,
 	name			 VARCHAR(512) NOT NULL,
+	type			 VARCHAR(512) NOT NULL,
+	weight			 INTEGER NOT NULL,
+	height			 INTEGER NOT NULL,
+	colour			 VARCHAR(512) NOT NULL,
 	product_id_prod	 BIGINT UNIQUE,
 	seller_customer_id_user BIGINT NOT NULL,
 	PRIMARY KEY(id_prod)
-);
-
-CREATE TABLE features (
-	type		 VARCHAR(512) NOT NULL,
-	type_value	 INTEGER NOT NULL,
-	product_id_prod BIGINT NOT NULL
 );
 
 CREATE TABLE seller (
@@ -104,7 +102,6 @@ CREATE TABLE buyer_campaign (
 
 ALTER TABLE product ADD CONSTRAINT product_fk1 FOREIGN KEY (product_id_prod) REFERENCES product(id_prod);
 ALTER TABLE product ADD CONSTRAINT product_fk2 FOREIGN KEY (seller_customer_id_user) REFERENCES seller(customer_id_user);
-ALTER TABLE features ADD CONSTRAINT features_fk1 FOREIGN KEY (product_id_prod) REFERENCES product(id_prod);
 ALTER TABLE seller ADD CONSTRAINT seller_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
 ALTER TABLE buyer ADD CONSTRAINT buyer_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
 ALTER TABLE to_order ADD CONSTRAINT to_order_fk1 FOREIGN KEY (buyer_customer_id_user) REFERENCES buyer(customer_id_user);
