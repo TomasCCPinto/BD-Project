@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from status.status import *
-from user import user
+from customer import user
 from product import product
 from flask_jwt_extended import JWTManager
 
