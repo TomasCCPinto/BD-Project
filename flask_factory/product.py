@@ -1,6 +1,7 @@
 
 from flask import Blueprint, jsonify, request
-#status e database
+from flask_jwt_extended import decode_token
+
 from status.status import *
 import database.db as db
 
@@ -18,21 +19,23 @@ def add_product():
             "status": GET_ERROR_CODE,
             "error": "No json"
         })
-    if "type" not in args or "description" not in args or "height" not in args or "weight" not in args or "colour" not in args or "stock" not in args or "price" not in args or "seller_customer_id_user" not in args:
+
+    if "type" not in args or "description" not in args or "height" not in args or "weight" not in args or "colour" not in args or "stock" not in args or "price" not in args or "token" not in args:
 
         return jsonify({
             "status": GET_ERROR_CODE,
             "error": "Wrong parameters"
         })
     
-    type    = args["type"]
-    description      = args["description"]
-    height  = args["height"]
-    weight = args["weight"]
-    colour = args["colour"]
-    stock   = args["stock"]
-    price    = args["price"]
-    seller_customer_id_user  = args["seller_customer_id_user"]
+    type        = args["type"]
+    description = args["description"]
+    height      = args["height"]
+    weight      = args["weight"]
+    colour      = args["colour"]
+    stock       = args["stock"]
+    price       = args["price"]
+    token       = decode_token(args["token"])
+    seller_id   = token["sub"]["id"]
 
     message = {}
 
@@ -40,7 +43,7 @@ def add_product():
 
         conn   = db.get_data_base()
         cursor = conn.cursor()
-        query = f"INSERT INTO product (type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ('{type}','{description}',{height},{weight},'{colour}',{stock},{price},{seller_customer_id_user}); SELECT currval('product_id_prod_seq');"
+        query = f"INSERT INTO product (type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ('{type}','{description}',{height},{weight},'{colour}',{stock},{price},{seller_id}); SELECT currval('product_id_prod_seq');"
         cursor.execute(query)
         row   = cursor.fetchall()[0]
 
