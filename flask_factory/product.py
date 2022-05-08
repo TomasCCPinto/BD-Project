@@ -42,8 +42,8 @@ def add_product():
     try:
 
         conn   = db.get_data_base()
-        cursor = conn.cursor()
         query = f"INSERT INTO product (type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ('{type}','{description}',{height},{weight},'{colour}',{stock},{price},{seller_id}); SELECT currval('product_id_prod_seq');"
+        cursor = conn.cursor()
         cursor.execute(query)
         row   = cursor.fetchall()[0]
 

@@ -67,30 +67,29 @@ insert into seller (customer_id_user) values (22);
 insert into seller (customer_id_user) values (21);
 
 
-insert into product ( type ,description, height, weight , colour ,stock, price, product_id_prod ,seller_customer_id_user) values ('computador', 'kafmglrshxrbwbnxbutpcadqtwmnywdtnmtgrm',20 ,30,'red' , 3, 600, 1,29);
-insert into product ( type ,description, height, weight , colour ,stock, price, product_id_prod ,seller_customer_id_user) values ('computador', 'gfdgtatwiegwmmwgfofgpictpfvjkmskgqoiji',20 ,30,'red' ,52, 909, 2,30);
-insert into product ( type ,description, height, weight , colour ,stock, price, product_id_prod ,seller_customer_id_user) values ('computador', 'ipewawttyvqvgfxqxhekutsexhkjihbluuzarv',20 ,30,'red' ,63, 937, 3,28);
-insert into product ( type ,description, height, weight , colour ,stock, price, product_id_prod ,seller_customer_id_user) values ('TV',         'ytfeomghbsjadvopeuvhxfjyrexrsehouakobl',20 ,30,'red' ,42, 928, 4,27);
-insert into product ( type ,description, height, weight , colour ,stock, price, product_id_prod ,seller_customer_id_user) values ('TV',         'dmqgmpashlmlzajzsbxcospmgoifzhohivmxsy',20 ,30,'red' ,18, 213, 5,26);
-insert into product ( type ,description, height, weight , colour ,stock, price, product_id_prod ,seller_customer_id_user) values ('TV',         'fzdonzqbevltnkuhxwsfnlavbiqjnmggmkbybf',20 ,30,'red' ,36, 444, 6,25);
-insert into product ( type ,description, height, weight , colour ,stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'uyckrpkrqafdojfdlfpsyajakjfnbcvqvikhpw',20 ,30,'red' ,98, 811, 7,24);
-insert into product ( type ,description, height, weight , colour ,stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'gpcmwzgsciiskazjdhjggsoertnrtlfxniwizu',20 ,30,'red' ,67,  32, 8,21);
-insert into product ( type ,description, height, weight , colour ,stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'gstfnywgzxvuwufwgttmrosczbogbooekeswep',20 ,30,'red' ,20, 535, 9,23);
-insert into product ( type ,description, height, weight , colour ,stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'hrvqtkdtekozmnivybkoathhpnjpwjlzvdaoqp',20 ,30,'red' ,19, 719, 10,22);
+insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('computador', 'kafmglrshxrbwbnxbutpcadqtwmnywdtnmtgrm',20 ,30,'red' , 3, 600,  1, 29);
+insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('computador', 'gfdgtatwiegwmmwgfofgpictpfvjkmskgqoiji',20 ,30,'red' ,52, 909,  2, 30);
+insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('computador', 'ipewawttyvqvgfxqxhekutsexhkjihbluuzarv',20 ,30,'red' ,63, 937,  3, 28);
+insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('TV',         'ytfeomghbsjadvopeuvhxfjyrexrsehouakobl',20 ,30,'red' ,42, 928,  4, 27);
+insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('TV',         'dmqgmpashlmlzajzsbxcospmgoifzhohivmxsy',20 ,30,'red' ,18, 213,  5, 26);
+insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('TV',         'fzdonzqbevltnkuhxwsfnlavbiqjnmggmkbybf',20 ,30,'red' ,36, 444,  6, 25);
+insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'uyckrpkrqafdojfdlfpsyajakjfnbcvqvikhpw',20 ,30,'red' ,98, 811,  7, 24);
+insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'gpcmwzgsciiskazjdhjggsoertnrtlfxniwizu',20 ,30,'red' ,67,  32,  8, 21);
+insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'gstfnywgzxvuwufwgttmrosczbogbooekeswep',20 ,30,'red' ,20, 535,  9, 23);
+insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'hrvqtkdtekozmnivybkoathhpnjpwjlzvdaoqp',20 ,30,'red' ,19, 719, 10, 22);
 
-insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values ( 1, 5, 'aqgkrgwdlfgtulzqyqjaxqkqcfmjlnltmrogpq', 19,  1);
-insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values ( 2, 3, 'edazhxmejzjaoqdptqvjricrdhteofsbzfdbem', 18,  2);
-insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values ( 3, 5, 'gihkgniajcfodtznqrogcsqibbimlsayptkrtw', 17,  3);
-insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values ( 4, 2, 'afveefvszwblsihtaoewcyyeicioksayafahhv', 17,  4);
-insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values ( 5, 3, 'hewpbztnozdmksrvgfhvhhptwuvctlslouvjta', 17,  5);
-insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values ( 6, 1, 'ccdtohrksomosegcikrszgfnexbouhwgtacihf', 16,  6);
-insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values ( 7, 4, 'gladzvnaahpggqonwhmagqrfvrjuziyngwftiq', 15,  7);
-insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values ( 8, 4, 'wdnyafjflenvnzmciouarrrbmjxaxdoagrwsks', 14,  8);
-insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values ( 9, 2, 'ixjuxaeiodwmqcuwqjyuhhfgaqpimbrbgryxik', 14,  9);
-insert into rating (id_rating, rating, comment, buyer_customer_id_user, product_id_prod) values (10, 4, 'zyishbelkxppukaepmjennstkmbebyzloiqevb', 14, 10);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (5, 'aqgkrgwdlfgtulzqyqjaxqkqcfmjlnltmrogpq', 19,  1);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (3, 'edazhxmejzjaoqdptqvjricrdhteofsbzfdbem', 18,  2);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (5, 'gihkgniajcfodtznqrogcsqibbimlsayptkrtw', 17,  3);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (2, 'afveefvszwblsihtaoewcyyeicioksayafahhv', 17,  4);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (3, 'hewpbztnozdmksrvgfhvhhptwuvctlslouvjta', 17,  5);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (1, 'ccdtohrksomosegcikrszgfnexbouhwgtacihf', 16,  6);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (4, 'gladzvnaahpggqonwhmagqrfvrjuziyngwftiq', 15,  7);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (4, 'wdnyafjflenvnzmciouarrrbmjxaxdoagrwsks', 14,  8);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (2, 'ixjuxaeiodwmqcuwqjyuhhfgaqpimbrbgryxik', 14,  9);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (4, 'zyishbelkxppukaepmjennstkmbebyzloiqevb', 14, 10);
 
 
---
 --insert into to_order (id_order, buyer_customer_id_user) values (1, 1);
 --insert into to_order (id_order, buyer_customer_id_user) values (2, 2);
 --insert into to_order (id_order, buyer_customer_id_user) values (3, 3);

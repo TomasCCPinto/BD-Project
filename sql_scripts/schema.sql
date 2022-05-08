@@ -29,7 +29,7 @@ CREATE TABLE to_order (
 );
 
 CREATE TABLE rating (
-	id_rating		 BIGINT,
+	id_rating		 BIGSERIAL,
 	rating		 INTEGER NOT NULL,
 	comment		 VARCHAR(512),
 	buyer_customer_id_user BIGINT NOT NULL,
