@@ -92,8 +92,8 @@ def add_product():
     return jsonify(message)
 
 
-#ERRO NA SEGUNDA QUERY PROBABLY
-@product.route("/<int:prod_id>", methods = ["POST"])
+
+@product.route("/<int:prod_id>", methods = ["PUT"])
 def refresh_product(prod_id):
 
     try:
@@ -132,7 +132,7 @@ def refresh_product(prod_id):
                     message["error"]  = "Product id invalid"
 
                 else:
-                    #ERRO AQUI PROBABLY
+                    
                     query = f"""INSERT INTO product (type, description,height,weight,colour, stock, price,product_id_prod,seller_customer_id_user )
                              VALUES ((select type from product where id_prod = {prod_id}),'{description}',{height},{weight},'{colour}',(select stock from product where id_prod = {prod_id}),{price},{prod_id},(select seller_customer_id_user from product where id_prod = {prod_id})); SELECT currval('product_id_prod_seq');"""
 

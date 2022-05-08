@@ -23,7 +23,7 @@ CREATE TABLE buyer (
 );
 
 CREATE TABLE to_order (
-	id_order		 BIGINT,
+	id_order		 BIGSERIAL,
 	buyer_customer_id_user BIGINT NOT NULL,
 	PRIMARY KEY(id_order)
 );

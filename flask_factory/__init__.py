@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from status.status import *
 from customer import user
 from product import product
+from order import order
 from flask_jwt_extended import JWTManager
 from rating import rating
 
@@ -18,6 +19,7 @@ def creat_app(test_config = None):
 
     app.register_blueprint(user)
     app.register_blueprint(product)
+    app.register_blueprint(order)
     app.register_blueprint(rating)
 
     return app
