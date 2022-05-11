@@ -27,6 +27,7 @@ def login():
             "message": "Wrong parameters"
         })
 
+    print("HERE")
     username = args["username"]
     password = args["password"]
 
@@ -36,9 +37,11 @@ def login():
     try:
         with db.get_data_base() as conn:
             with conn.cursor() as cursor:
-                
+                print("HERE")
                 cursor.execute(query)
+                print("HERE")
                 row    = cursor.fetchall()[0]
+                print("HERE")
 
                 if cursor.rowcount == 0:
                     message["status"] = GET_ERROR_CODE

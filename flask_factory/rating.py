@@ -1,6 +1,7 @@
 
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import decode_token
+from numpy import product
 
 from status.status import *
 import database.db as db
@@ -38,7 +39,7 @@ def refresh_product(prod_id):
     id_user      = token["sub"]["id"]
     queryInsert  = f"INSERT INTO rating (rating, comment, buyer_customer_id_user, product_id_prod) VALUES ({rating}, '{comment}', {id_user}, {prod_id});"
     queryRating  = f"SELECT id_rating FROM rating WHERE buyer_customer_id_user = {id_user} and product_id_prod = {prod_id};"
-    queryProduct = f"SELECT id_prod FROM product WHERE id_prod = {prod_id};"
+    queryProduct = f"SELECT to_order.buyer_customer_id_user FROM quantity INNER JOIN to_order ON quantity.to_order_id_order = to_order.id_order WHERE product_id_prod = {prod_id} AND to_order.buyer_customer_id_user = {id_user}"
 
     if not 1 <= rating <= 5:
        
@@ -53,16 +54,18 @@ def refresh_product(prod_id):
             with conn.cursor() as cursor:
                 cursor.execute(queryRating)
 
+                # check no exits this rating
                 if cursor.rowcount == 0:
                     cursor.execute(queryProduct)
 
+                    # check user bought the product
                     if cursor.rowcount != 0:
                         cursor.execute(queryInsert)
                         message["status"] = SUCCESS_CODE
 
                     else:
                         message["status"] = GET_ERROR_CODE
-                        message["error"]  = "NO exists this product"
+                        message["error"]  = "You can't rate this product"
 
                 else:
                     message["status"] = GET_ERROR_CODE
