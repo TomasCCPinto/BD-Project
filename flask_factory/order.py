@@ -30,7 +30,6 @@ def add_order():
     cart = args["cart"]
     token    = decode_token(args["token"])
     id_user = token["sub"]["id"]
-    print(id_user)
 
     query = f"Select * from buyer where customer_id_user = {id_user};"
     message = {}
@@ -83,6 +82,9 @@ def add_order():
                         #print(id_order)
                         query_quantity_add = f"insert into quantity (quantity, to_order_id_order,  product_id_prod) values ({x[1]}, {id_order[0]},{product[0]});"
                         cursor.execute(query_quantity_add) 
+
+                        """ WE HAVE A BUG HERE """
+                        print(id_user)
                         
 
                     if error:
