@@ -1,7 +1,7 @@
 
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import decode_token
-from numpy import product
+
 
 from status.status import *
 import database.db as db

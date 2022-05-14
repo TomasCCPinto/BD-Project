@@ -38,49 +38,34 @@ def add_product():
     seller_id   = token["sub"]["id"]
 
     message = {}
+    query = f"Select * from seller where customer_id_user = {seller_id};"
 
     try:
 
-        conn   = db.get_data_base()
-        query = f"INSERT INTO product (type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ('{type}','{description}',{height},{weight},'{colour}',{stock},{price},{seller_id}); SELECT currval('product_id_prod_seq');"
-        cursor = conn.cursor()
-        cursor.execute(query)
-        row   = cursor.fetchall()[0]
-
-        cursor.close()
-        conn.commit()
-        
-       
-        cursor = conn.cursor()
-        query2 = "UPDATE product SET product_id_prod = ((select max(product_id_prod) from product)+1) where product_id_prod is null;"
-        cursor.execute(query2)
-        
-        cursor.close()
-        conn.commit()
-        
-        
-        conn.close()
-        message["status"]  = SUCCESS_CODE
-        message["message"] = "Product added successfully"
-        message["results"] = row[0]
-
-        '''
-        
         with db.get_data_base() as conn:
-            with conn.cursor() as cursor:                
-                query = f"INSERT INTO product (type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ('{type}','{description}',{height},{weight},'{colour}',{stock},{price},{seller_customer_id_user}); SELECT currval('product_id_prod_seq');"
-                print("aaa1")
+            with conn.cursor() as cursor: 
                 cursor.execute(query)
-                print("aaa")
-                query2 = "UPDATE product SET product_id_prod = ((select max(product_id_prod) from product)+1) where product_id_prod is null;"
-                cursor.execute(query2)
-                print("222")
-                row   = cursor.fetchall()[0]
-                message["status"]  = SUCCESS_CODE
-                message["message"] = "Product added successfully"
-                message["results"] = row[0]
-        '''
-            
+                
+                if cursor.rowcount == 1:
+                    query = f"INSERT INTO product (id_prod,version ,type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ((select max(id_prod)+1 from product),0,'{type}','{description}',{height},{weight},'{colour}',{stock},{price},{seller_id});"
+                    cursor.execute(query)
+                    
+                    query_return = "select max(id_prod) from product;"
+                    
+                    cursor.execute(query_return)
+                    print("AQUIII")
+                    row   = cursor.fetchall()[0]
+
+
+                    message["status"]  = SUCCESS_CODE
+                    message["message"] = "Product added successfully"
+                    message["results"] = row[0]
+
+
+                else:
+                    message["status"] = GET_ERROR_CODE
+                    message["error"]  = "Only sellers can manage products"
+        
 
     except:
         return jsonify({
@@ -94,7 +79,7 @@ def add_product():
 
 
 @product.route("/<int:prod_id>", methods = ["PUT"])
-def refresh_product(prod_id):
+def update_product(prod_id):
 
     try:
         args = request.get_json()
@@ -126,21 +111,26 @@ def refresh_product(prod_id):
         with db.get_data_base() as conn:
             with conn.cursor() as cursor:
                 cursor.execute(query)
-
+                print("aaaaa")
                 if cursor.rowcount ==0:
                     message["status"] = GET_ERROR_CODE
                     message["error"]  = "Product id invalid"
 
                 else:
-                    
-                    query = f"""INSERT INTO product (type, description,height,weight,colour, stock, price,product_id_prod,seller_customer_id_user )
-                             VALUES ((select type from product where id_prod = {prod_id}),'{description}',{height},{weight},'{colour}',(select stock from product where id_prod = {prod_id}),{price},{prod_id},(select seller_customer_id_user from product where id_prod = {prod_id})); SELECT currval('product_id_prod_seq');"""
-
+                    query = f"select  version ,type ,stock, seller_customer_id_user from product where id_prod =  {prod_id} ;"
                     cursor.execute(query)
-                    row   = cursor.fetchall()[0]                 
+                    row   = cursor.fetchall()[-1] 
+                    version = row[0]+1
+                    print(row)
+                    
+                    #query = f"INSERT INTO product (id_prod,version,type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ({prod_id},{version},{row[1]},'{description}',{height},{weight},'{colour}',{row[2]},{price},{row[3]});"            
+                    query = f"INSERT INTO product (id_prod,version,type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ({prod_id},{version},{row[1]},'{description}',{height},{weight},'{colour}',{row[2]},{price},{row[3]});"
+                    cursor.execute(query)
+                    print("aquii")
+                    #row   = cursor.fetchall()[0]                 
                     message["status"]  = SUCCESS_CODE
                     message["message"] = "Product values updated"
-                    message["results"] = row[0]
+                    #message["results"] = row[0]
 
 
     except:
