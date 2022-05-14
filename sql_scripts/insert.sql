@@ -67,73 +67,35 @@ insert into seller (customer_id_user) values (22);
 insert into seller (customer_id_user) values (21);
 
 
-insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('computador', 'kafmglrshxrbwbnxbutpcadqtwmnywdtnmtgrm',20 ,30,'red' , 3, 600,  1, 29);
-insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('computador', 'gfdgtatwiegwmmwgfofgpictpfvjkmskgqoiji',20 ,30,'red' ,52, 909,  2, 30);
-insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('computador', 'ipewawttyvqvgfxqxhekutsexhkjihbluuzarv',20 ,30,'red' ,63, 937,  3, 28);
-insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('TV',         'ytfeomghbsjadvopeuvhxfjyrexrsehouakobl',20 ,30,'red' ,42, 928,  4, 27);
-insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('TV',         'dmqgmpashlmlzajzsbxcospmgoifzhohivmxsy',20 ,30,'red' ,18, 213,  5, 26);
-insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('TV',         'fzdonzqbevltnkuhxwsfnlavbiqjnmggmkbybf',20 ,30,'red' ,36, 444,  6, 25);
-insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'uyckrpkrqafdojfdlfpsyajakjfnbcvqvikhpw',20 ,30,'red' ,98, 811,  7, 24);
-insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'gpcmwzgsciiskazjdhjggsoertnrtlfxniwizu',20 ,30,'red' ,67,  32,  8, 21);
-insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'gstfnywgzxvuwufwgttmrosczbogbooekeswep',20 ,30,'red' ,20, 535,  9, 23);
-insert into product (type ,description, height, weight, colour, stock, price, product_id_prod ,seller_customer_id_user) values ('Smartphone', 'hrvqtkdtekozmnivybkoathhpnjpwjlzvdaoqp',20 ,30,'red' ,19, 719, 10, 22);
-
-insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (5, 'aqgkrgwdlfgtulzqyqjaxqkqcfmjlnltmrogpq', 19,  1);
-insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (3, 'edazhxmejzjaoqdptqvjricrdhteofsbzfdbem', 18,  2);
-insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (5, 'gihkgniajcfodtznqrogcsqibbimlsayptkrtw', 17,  3);
-insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (2, 'afveefvszwblsihtaoewcyyeicioksayafahhv', 17,  4);
-insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (3, 'hewpbztnozdmksrvgfhvhhptwuvctlslouvjta', 17,  5);
-insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (1, 'ccdtohrksomosegcikrszgfnexbouhwgtacihf', 16,  6);
-insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (4, 'gladzvnaahpggqonwhmagqrfvrjuziyngwftiq', 15,  7);
-insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (4, 'wdnyafjflenvnzmciouarrrbmjxaxdoagrwsks', 14,  8);
-insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (2, 'ixjuxaeiodwmqcuwqjyuhhfgaqpimbrbgryxik', 14,  9);
-insert into rating (rating, comment, buyer_customer_id_user, product_id_prod) values (4, 'zyishbelkxppukaepmjennstkmbebyzloiqevb', 14, 10);
+insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (1, 0, 'computador', 'kafmglrshxrbwbnxbutpcadqtwmnywdtnmtgrm',20 ,30,'red' , 3, 600, 29);
+insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (1, 1, 'computador', 'gfdgtatwiegwmmwgfofgpictpfvjkmskgqoiji',20 ,30,'red' ,52, 909, 30);
+insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (1, 2, 'computador', 'ipewawttyvqvgfxqxhekutsexhkjihbluuzarv',20 ,30,'red' ,63, 937, 28);
+insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (2, 0, 'TV',         'ytfeomghbsjadvopeuvhxfjyrexrsehouakobl',20 ,30,'red' ,42, 928, 27);
+insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (2, 1, 'TV',         'dmqgmpashlmlzajzsbxcospmgoifzhohivmxsy',20 ,30,'red' ,18, 213, 26);
+insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (2, 2, 'TV',         'fzdonzqbevltnkuhxwsfnlavbiqjnmggmkbybf',20 ,30,'red' ,36, 444, 25);
+insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (3, 0, 'Smartphone', 'uyckrpkrqafdojfdlfpsyajakjfnbcvqvikhpw',20 ,30,'red' ,98, 811, 24);
+insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (3, 1, 'Smartphone', 'gpcmwzgsciiskazjdhjggsoertnrtlfxniwizu',20 ,30,'red' ,67,  32, 21);
+insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (3, 2, 'Smartphone', 'gstfnywgzxvuwufwgttmrosczbogbooekeswep',20 ,30,'red' ,20, 535, 23);
+insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (3, 3, 'Smartphone', 'hrvqtkdtekozmnivybkoathhpnjpwjlzvdaoqp',20 ,30,'red' ,19, 719, 22);
 
 
---insert into to_order (id_order, buyer_customer_id_user) values (1, 1);
---insert into to_order (id_order, buyer_customer_id_user) values (2, 2);
---insert into to_order (id_order, buyer_customer_id_user) values (3, 3);
---insert into to_order (id_order, buyer_customer_id_user) values (4, 4);
---insert into to_order (id_order, buyer_customer_id_user) values (5, 5);
---insert into to_order (id_order, buyer_customer_id_user) values (6, 6);
---insert into to_order (id_order, buyer_customer_id_user) values (7, 7);
---insert into to_order (id_order, buyer_customer_id_user) values (8, 8);
---insert into to_order (id_order, buyer_customer_id_user) values (9, 9);
---insert into to_order (id_order, buyer_customer_id_user) values (10, 10);
---
---
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (1, 1, 1);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (3, 2, 2);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (3, 3, 3);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (8, 4, 4);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (10, 5, 5);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (8, 6, 6);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (8, 7, 7);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (5, 8, 8);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (6, 9, 9);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (7, 10, 10);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (1, 11, 11);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (2, 12, 12);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (6, 13, 13);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (3, 14, 14);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (1, 15, 15);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (10, 16, 16);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (2, 17, 17);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (4, 18, 18);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (4, 19, 19);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (8, 20, 20);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (6, 21, 21);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (3, 22, 22);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (2, 23, 23);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (1, 24, 24);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (1, 25, 25);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (8, 26, 26);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (1, 27, 27);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (2, 28, 28);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (5, 29, 29);
---insert into quantity (quantity, to_order_id_order, product_id_prod) values (8, 30, 30);
---
---
+insert into to_order (buyer_customer_id_user) values (16);
+insert into to_order (buyer_customer_id_user) values (15);
+insert into to_order (buyer_customer_id_user) values (14);
+
+
+insert into quantity (quantity, to_order_id_order, product_id_prod, product_version) values ( 1, 3, 1, 0);
+insert into quantity (quantity, to_order_id_order, product_id_prod, product_version) values ( 3, 2, 2, 0);
+insert into quantity (quantity, to_order_id_order, product_id_prod, product_version) values ( 8, 2, 3, 0);
+
+
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod, product_version) values (5, 'aqgkrgwdlfgtulzqyqjaxqkqcfmjlnltmrogpq', 16,  1, 0);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod, product_version) values (3, 'edazhxmejzjaoqdptqvjricrdhteofsbzfdbem', 15,  2, 0);
+insert into rating (rating, comment, buyer_customer_id_user, product_id_prod, product_version) values (5, 'gihkgniajcfodtznqrogcsqibbimlsayptkrtw', 14,  3, 0);
+
+
+
+
 --insert into forum_notifications (if_forum, comment, notifications_id, notifications_message, notifications_time_stamp, notifications_was_read, customer_id_user, to_order_id_order, forum_notifications_id_forum, product_id_prod) values (1, 'krnjaulqolhjlruqdfltbftvtxfxyunauvzlxmz', 1, 'blohxjrxuksynsnmflrfzanopxypegzngjoplcf', '1:35 AM', false, 1, 1, 1, 1);
 --insert into forum_notifications (if_forum, comment, notifications_id, notifications_message, notifications_time_stamp, notifications_was_read, customer_id_user, to_order_id_order, forum_notifications_id_forum, product_id_prod) values (2, 'zjscawndbdogmkwpudcwhrwkokwawoiqiyxyavp', 2, 'ilhpwcedhninsenmwllhzdzrtyzdmxceuilmkfh', '11:28 PM', true, 2, 2, 2, 2);
 --insert into forum_notifications (if_forum, comment, notifications_id, notifications_message, notifications_time_stamp, notifications_was_read, customer_id_user, to_order_id_order, forum_notifications_id_forum, product_id_prod) values (3, 'vvstvhywwqpblaosbniacwueobzhmwbsxmmfosc', 3, 'cxswbkrjbmetqobgispkaiilfwffwiijildqnxi', '11:58 AM', true, 3, 3, 3, 3);
