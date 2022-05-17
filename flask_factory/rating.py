@@ -37,9 +37,8 @@ def refresh_product(prod_id):
     token        = decode_token(args["token"])
     comment      = args["comment"]
     id_user      = token["sub"]["id"]
-    queryInsert  = f"INSERT INTO rating (rating, comment, buyer_customer_id_user, product_id_prod) VALUES ({rating}, '{comment}', {id_user}, {prod_id});"
     queryRating  = f"SELECT id_rating FROM rating WHERE buyer_customer_id_user = {id_user} and product_id_prod = {prod_id};"
-    queryProduct = f"SELECT to_order.buyer_customer_id_user FROM quantity INNER JOIN to_order ON quantity.to_order_id_order = to_order.id_order WHERE product_id_prod = {prod_id} AND to_order.buyer_customer_id_user = {id_user}"
+    queryProduct = f"SELECT product_version FROM quantity INNER JOIN to_order ON quantity.to_order_id_order = to_order.id_order WHERE product_id_prod = {prod_id} AND to_order.buyer_customer_id_user = {id_user}"
 
     if not 1 <= rating <= 5:
        
@@ -57,6 +56,8 @@ def refresh_product(prod_id):
                 # check no exits this rating
                 if cursor.rowcount == 0:
                     cursor.execute(queryProduct)
+                    row          = cursor.fetchall()[-1]
+                    queryInsert  = f"INSERT INTO rating (rating, comment, buyer_customer_id_user, product_id_prod, product_version) VALUES ({rating}, '{comment}', {id_user}, {prod_id}, {row[0]});"
 
                     # check user bought the product
                     if cursor.rowcount != 0:
