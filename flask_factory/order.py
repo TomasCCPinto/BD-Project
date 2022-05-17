@@ -40,51 +40,47 @@ def add_order():
                 cursor.execute(query)
 
                 if cursor.rowcount == 1:
+                    #the id increments even when the program fails so the number gets higher than expected
                     query_order = f"INSERT INTO to_order (buyer_customer_id_user) values ({id_user}); select currval('to_order_id_order_seq');"
                     cursor.execute(query_order)
                     id_order = cursor.fetchall()[0] 
-                    #print(id_order)
-                    #meio javardo
-                    #query_id_order = "select max(id_order) from to_order;"
-                    #cursor.execute(query_id_order)
-                    #id_order = cursor.fetchall()[0] 
                     
-                    
-                    
+                           
+                                       
                     error=0
                     for x in cart:
-                        query_prod = f"select * from product where id_prod = {x[0]};"
+                        query_prod = f"select * from product where id_prod = {x[0]} order by version;"
                         cursor.execute(query_prod)
-                        
-                        if cursor.rowcount != 1:
+                       
+                        if cursor.rowcount == 0:
                             
                             message["status"] = GET_ERROR_CODE
                             message["error"]  = "Error selecting a product"
                             error=1
                             conn.rollback()
                             break
-                        product = cursor.fetchall()[0]
-                        #query_quantity = f"select stock from product where id_prod = {x[0]} ;"
-                        #cursor.execute(query_quantity)
-                        #row   = cursor.fetchall()[0]
                         
-                        if (product[2]<x[1]):
+                        product = cursor.fetchall()[-1]
+                        
+                        
+
+                        if (product[3]<x[1]):
                             message["status"] = GET_ERROR_CODE
-                            message["error"]  = "No stock available"
+                            message["error"]  = f"No stock available for product with id {x[0]}"
                             error=1
-                            conn.rollback()
                             break
-
-                        new_stock = product[2] - x[1] 
-                        query_prod_up = f"update product set stock = {new_stock} where id_prod = {x[0]};"
+                        
+                        new_stock = product[3] - x[1] 
+                        query_prod_up = f"update product set stock = {new_stock} where id_prod = {x[0]} and version = {product[1]};"
                         cursor.execute(query_prod_up)
-                        conn.rollback()
-                        #print(id_order)
-                        query_quantity_add = f"insert into quantity (quantity, to_order_id_order,  product_id_prod) values ({x[1]}, {id_order[0]},{product[0]});"
-                        cursor.execute(query_quantity_add) 
+                        
+                        
 
-                        """ WE HAVE A BUG HERE """
-                        print(id_user)
+                        query_quantity_add = f"insert into quantity (quantity, to_order_id_order,  product_id_prod, product_version) values ({x[1]}, {id_order[0]},{product[0]},{product[1]});"
+                        cursor.execute(query_quantity_add) 
+                        
+                       
+                        
                         
 
                     if error:
@@ -95,10 +91,7 @@ def add_order():
                         message["result"] = id_order[0]
  
                                             
-                    #row   = cursor.fetchall()[0]                 
-                    #message["status"]  = SUCCESS_CODE
-                    #message["message"] = "Product values updated"
-                    #message["results"] = row[0]
+                 
                 else:
                     message["status"] = GET_ERROR_CODE
                     message["error"]  = "Only buyers can do orders"
