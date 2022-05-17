@@ -62,8 +62,6 @@ def add_order():
                         
                         product = cursor.fetchall()[-1]
                         
-                        
-
                         if (product[3]<x[1]):
                             message["status"] = GET_ERROR_CODE
                             message["error"]  = f"No stock available for product with id {x[0]}"

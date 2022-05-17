@@ -89,7 +89,7 @@ def update_product(prod_id):
             "error": "No json"
         })
 
-    if  "description" not in args or "height" not in args or "weight" not in args or "colour" not in args or "price" not in args :
+    if  "description" not in args or "height" not in args or "weight" not in args or "colour" not in args or "price" not in args or "token" not in args :
 
         return jsonify({
             "status": GET_ERROR_CODE,
@@ -101,7 +101,8 @@ def update_product(prod_id):
     height  = args["height"]
     weight = args["weight"]
     colour = args["colour"]
-
+    token       = decode_token(args["token"])
+    seller_id   = token["sub"]["id"]
 
     query   = f"SELECT * FROM product WHERE id_prod = {prod_id}"
     message = {}
@@ -111,7 +112,7 @@ def update_product(prod_id):
         with db.get_data_base() as conn:
             with conn.cursor() as cursor:
                 cursor.execute(query)
-                #print("aaaaa")
+              
                 if cursor.rowcount ==0:
                     message["status"] = GET_ERROR_CODE
                     message["error"]  = "Product id invalid"
@@ -120,18 +121,22 @@ def update_product(prod_id):
                     query = f"select  version ,type ,stock, seller_customer_id_user from product where id_prod =  {prod_id} ;"
                     cursor.execute(query)
                     row   = cursor.fetchall()[-1] 
-                    version = row[0]+1
-                    #print(row)
-                    #print(str(version)+ ' '+ description + ' '+ str(price)+' '+str(height)+' '+str(weight)+ ' '+colour)
-                    
-                    #query = f"INSERT INTO product (id_prod,version,type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ({prod_id},{version},{row[1]},'{description}',{height},{weight},'{colour}',{row[2]},{price},{row[3]});"            
-                    query = f"INSERT INTO product (id_prod,version,type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ({prod_id},{version},'{row[1]}','{description}',{height},{weight},'{colour}',{row[2]},{price},{row[3]});"
-                    cursor.execute(query)
-                    #print("aquii")
-                    #row   = cursor.fetchall()[0]                 
-                    message["status"]  = SUCCESS_CODE
-                    message["message"] = "Product values updated"
-                    #message["results"] = row[0]
+
+                    if(row[3]==seller_id):
+
+                        version = row[0]+1
+                        #print(row)
+                        #print(str(version)+ ' '+ description + ' '+ str(price)+' '+str(height)+' '+str(weight)+ ' '+colour)
+                        query = f"INSERT INTO product (id_prod,version,type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ({prod_id},{version},'{row[1]}','{description}',{height},{weight},'{colour}',{row[2]},{price},{row[3]});"
+                        cursor.execute(query)
+                                        
+                        message["status"]  = SUCCESS_CODE
+                        message["message"] = "Product values updated"
+                        #message["results"] = row[0]
+                        
+                    else:
+                        message["status"] = GET_ERROR_CODE
+                        message["error"]  = "Only the product seller can update it"
 
 
     except:
