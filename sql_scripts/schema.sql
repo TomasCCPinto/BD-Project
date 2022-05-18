@@ -181,13 +181,13 @@ CREATE TABLE administrator (
 );
 
 CREATE TABLE forum (
-	if_forum	 BIGSERIAL,
+	id_forum	 BIGSERIAL,
 	comment		 VARCHAR(512) NOT NULL,
 	customer_id_user BIGINT NOT NULL,
-	forum_if_forum	 BIGINT,
+	forum_id_forum	 BIGINT,
 	product_id_prod	 BIGINT NOT NULL,
 	product_version	 BIGINT NOT NULL,
-	PRIMARY KEY(if_forum)
+	PRIMARY KEY(id_forum)
 );
 
 CREATE TABLE notifications (
@@ -241,7 +241,7 @@ ALTER TABLE rating ADD CONSTRAINT rating_fk1 FOREIGN KEY (buyer_customer_id_user
 ALTER TABLE rating ADD CONSTRAINT rating_fk2 FOREIGN KEY (product_id_prod, product_version) REFERENCES product(id_prod, version);
 ALTER TABLE administrator ADD CONSTRAINT administrator_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
 ALTER TABLE forum ADD CONSTRAINT forum_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
-ALTER TABLE forum ADD CONSTRAINT forum_fk2 FOREIGN KEY (forum_if_forum) REFERENCES forum(if_forum);
+ALTER TABLE forum ADD CONSTRAINT forum_fk2 FOREIGN KEY (forum_id_forum) REFERENCES forum(id_forum);
 ALTER TABLE forum ADD CONSTRAINT forum_fk3 FOREIGN KEY (product_id_prod, product_version) REFERENCES product(id_prod, version);
 ALTER TABLE notifications ADD CONSTRAINT notifications_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
 ALTER TABLE campaign ADD CONSTRAINT campaign_fk1 FOREIGN KEY (administrator_customer_id_user) REFERENCES administrator(customer_id_user);

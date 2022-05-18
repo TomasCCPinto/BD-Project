@@ -53,7 +53,7 @@ def add_product():
                     query_return = "select max(id_prod) from product;"
                     
                     cursor.execute(query_return)
-                    print("AQUIII")
+                    #print("AQUIII")
                     row   = cursor.fetchall()[0]
 
 
