@@ -151,6 +151,7 @@ CREATE TABLE buyer (
 
 CREATE TABLE to_order (
 	id_order		 BIGSERIAL,
+	month			 BIGINT NOT NULL,
 	buyer_customer_id_user BIGINT NOT NULL,
 	PRIMARY KEY(id_order)
 );

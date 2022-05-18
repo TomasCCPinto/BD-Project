@@ -79,9 +79,9 @@ insert into product (id_prod, version, type ,description, height, weight, colour
 insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (3, 3, 'Smartphone', 'hrvqtkdtekozmnivybkoathhpnjpwjlzvdaoqp',20 ,30,'red' ,19, 719, 23);
 
 
-insert into to_order (buyer_customer_id_user) values (16);
-insert into to_order (buyer_customer_id_user) values (15);
-insert into to_order (buyer_customer_id_user) values (14);
+insert into to_order (buyer_customer_id_user,month) values (16,3);
+insert into to_order (buyer_customer_id_user,month) values (15,3);
+insert into to_order (buyer_customer_id_user,month) values (14,3);
 
 
 insert into quantity (quantity, to_order_id_order, product_id_prod, product_version) values ( 1, 3, 1, 0);
