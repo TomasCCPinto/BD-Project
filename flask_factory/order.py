@@ -48,6 +48,7 @@ def add_order():
                            
                                        
                     error=0
+                    total=0
                     for x in cart:
                         query_prod = f"select * from product where id_prod = {x[0]} order by version;"
                         cursor.execute(query_prod)
@@ -68,6 +69,7 @@ def add_order():
                             error=1
                             break
                         
+                        total+=product[4]*x[1]
                         new_stock = product[3] - x[1] 
                         query_prod_up = f"update product set stock = {new_stock} where id_prod = {x[0]} and version = {product[1]};"
                         cursor.execute(query_prod_up)
@@ -84,6 +86,10 @@ def add_order():
                     if error:
                         conn.rollback()
                     else:
+
+                        query = f"update to_order set total = {total} where id_order = {id_order[0]}"
+                        cursor.execute(query)
+
                         message["status"]  = SUCCESS_CODE
                         message["message"] = "ORDER COMPLETED"
                         message["result"] = id_order[0]
