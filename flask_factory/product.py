@@ -125,15 +125,13 @@ def update_product(prod_id):
                     if(row[3]==seller_id):
 
                         version = row[0]+1
-                        #print(row)
-                        #print(str(version)+ ' '+ description + ' '+ str(price)+' '+str(height)+' '+str(weight)+ ' '+colour)
                         query = f"INSERT INTO product (id_prod,version,type, description,height,weight,colour, stock, price,seller_customer_id_user ) VALUES ({prod_id},{version},'{row[1]}','{description}',{height},{weight},'{colour}',{row[2]},{price},{row[3]});"
                         cursor.execute(query)
                                         
                         message["status"]  = SUCCESS_CODE
                         message["message"] = "Product values updated"
                         #message["results"] = row[0]
-                        
+
                     else:
                         message["status"] = GET_ERROR_CODE
                         message["error"]  = "Only the product seller can update it"
