@@ -1,5 +1,6 @@
 --CREATE TABLE product (
---	id_prod		  BIGSERIAL,
+--	id_prod		 BIGINT,
+--	version		 BIGINT,
 --	description		 VARCHAR(512) NOT NULL,
 --	stock			 BIGINT NOT NULL,
 --	price			 FLOAT(8) NOT NULL,
@@ -7,9 +8,8 @@
 --	weight			 INTEGER NOT NULL,
 --	height			 INTEGER NOT NULL,
 --	colour			 VARCHAR(512) NOT NULL,
---	product_id_prod	 BIGINT,
 --	seller_customer_id_user BIGINT NOT NULL,
---	PRIMARY KEY(id_prod)
+--	PRIMARY KEY(id_prod,version)
 --);
 --
 --CREATE TABLE seller (
@@ -32,8 +32,9 @@
 --	id_rating		 BIGSERIAL,
 --	rating		 INTEGER NOT NULL,
 --	comment		 VARCHAR(512),
---	buyer_customer_id_user BIGINT NOT NULL,
+--	buyer_customer_id_user BIGINT UNIQUE NOT NULL,
 --	product_id_prod	 BIGINT NOT NULL,
+--	product_version	 BIGINT NOT NULL,
 --	PRIMARY KEY(id_rating)
 --);
 --
@@ -53,7 +54,7 @@
 --);
 --
 --CREATE TABLE forum_notifications (
---	if_forum			 BIGINT,
+--	if_forum			 BIGSERIAL,
 --	comment			 VARCHAR(512) NOT NULL,
 --	notifications_id		 BIGINT UNIQUE NOT NULL,
 --	notifications_message	 VARCHAR(512) NOT NULL,
@@ -63,11 +64,12 @@
 --	to_order_id_order		 BIGINT NOT NULL,
 --	forum_notifications_if_forum BIGINT,
 --	product_id_prod		 BIGINT NOT NULL,
+--	product_version		 BIGINT NOT NULL,
 --	PRIMARY KEY(if_forum)
 --);
 --
 --CREATE TABLE campaign (
---	id				 BIGINT,
+--	id				 BIGSERIAL,
 --	data_begin			 DATE NOT NULL,
 --	data_end			 DATE NOT NULL,
 --	n_coupon			 INTEGER NOT NULL,
@@ -79,7 +81,7 @@
 --);
 --
 --CREATE TABLE coupon (
---	id			 BIGINT,
+--	id			 BIGSERIAL,
 --	purchase_date		 BOOL NOT NULL,
 --	buyer_customer_id_user BIGINT NOT NULL,
 --	campaign_id		 BIGINT NOT NULL,
@@ -90,7 +92,8 @@
 --	quantity		 INTEGER NOT NULL,
 --	to_order_id_order BIGINT,
 --	product_id_prod	 BIGINT,
---	PRIMARY KEY(to_order_id_order,product_id_prod)
+--	product_version	 BIGINT,
+--	PRIMARY KEY(to_order_id_order,product_id_prod,product_version)
 --);
 --
 --CREATE TABLE buyer_campaign (
@@ -99,23 +102,22 @@
 --	PRIMARY KEY(buyer_customer_id_user,campaign_id)
 --);
 --
---ALTER TABLE product ADD CONSTRAINT product_fk1 FOREIGN KEY (product_id_prod) REFERENCES product(id_prod);
---ALTER TABLE product ADD CONSTRAINT product_fk2 FOREIGN KEY (seller_customer_id_user) REFERENCES seller(customer_id_user);
+--ALTER TABLE product ADD CONSTRAINT product_fk1 FOREIGN KEY (seller_customer_id_user) REFERENCES seller(customer_id_user);
 --ALTER TABLE seller ADD CONSTRAINT seller_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
 --ALTER TABLE buyer ADD CONSTRAINT buyer_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
 --ALTER TABLE to_order ADD CONSTRAINT to_order_fk1 FOREIGN KEY (buyer_customer_id_user) REFERENCES buyer(customer_id_user);
 --ALTER TABLE rating ADD CONSTRAINT rating_fk1 FOREIGN KEY (buyer_customer_id_user) REFERENCES buyer(customer_id_user);
---ALTER TABLE rating ADD CONSTRAINT rating_fk2 FOREIGN KEY (product_id_prod) REFERENCES product(id_prod);
+--ALTER TABLE rating ADD CONSTRAINT rating_fk2 FOREIGN KEY (product_id_prod, product_version) REFERENCES product(id_prod, version);
 --ALTER TABLE administrator ADD CONSTRAINT administrator_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
 --ALTER TABLE forum_notifications ADD CONSTRAINT forum_notifications_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
 --ALTER TABLE forum_notifications ADD CONSTRAINT forum_notifications_fk2 FOREIGN KEY (to_order_id_order) REFERENCES to_order(id_order);
 --ALTER TABLE forum_notifications ADD CONSTRAINT forum_notifications_fk3 FOREIGN KEY (forum_notifications_if_forum) REFERENCES forum_notifications(if_forum);
---ALTER TABLE forum_notifications ADD CONSTRAINT forum_notifications_fk4 FOREIGN KEY (product_id_prod) REFERENCES product(id_prod);
+--ALTER TABLE forum_notifications ADD CONSTRAINT forum_notifications_fk4 FOREIGN KEY (product_id_prod, product_version) REFERENCES product(id_prod, version);
 --ALTER TABLE campaign ADD CONSTRAINT campaign_fk1 FOREIGN KEY (administrator_customer_id_user) REFERENCES administrator(customer_id_user);
 --ALTER TABLE coupon ADD CONSTRAINT coupon_fk1 FOREIGN KEY (buyer_customer_id_user) REFERENCES buyer(customer_id_user);
 --ALTER TABLE coupon ADD CONSTRAINT coupon_fk2 FOREIGN KEY (campaign_id) REFERENCES campaign(id);
 --ALTER TABLE quantity ADD CONSTRAINT quantity_fk1 FOREIGN KEY (to_order_id_order) REFERENCES to_order(id_order);
---ALTER TABLE quantity ADD CONSTRAINT quantity_fk2 FOREIGN KEY (product_id_prod) REFERENCES product(id_prod);
+--ALTER TABLE quantity ADD CONSTRAINT quantity_fk2 FOREIGN KEY (product_id_prod, product_version) REFERENCES product(id_prod, version);
 --ALTER TABLE buyer_campaign ADD CONSTRAINT buyer_campaign_fk1 FOREIGN KEY (buyer_customer_id_user) REFERENCES buyer(customer_id_user);
 --ALTER TABLE buyer_campaign ADD CONSTRAINT buyer_campaign_fk2 FOREIGN KEY (campaign_id) REFERENCES campaign(id);
 
@@ -178,19 +180,23 @@ CREATE TABLE administrator (
 	PRIMARY KEY(customer_id_user)
 );
 
-CREATE TABLE forum_notifications (
-	if_forum			 BIGSERIAL,
-	comment			 VARCHAR(512) NOT NULL,
-	notifications_id		 BIGINT UNIQUE NOT NULL,
-	notifications_message	 VARCHAR(512) NOT NULL,
-	notifications_time_stamp	 TIMESTAMP NOT NULL,
-	notifications_was_read	 BOOL NOT NULL,
-	customer_id_user		 BIGINT NOT NULL,
-	to_order_id_order		 BIGINT NOT NULL,
-	forum_notifications_if_forum BIGINT,
-	product_id_prod		 BIGINT NOT NULL,
-	product_version		 BIGINT NOT NULL,
+CREATE TABLE forum (
+	if_forum	 BIGSERIAL,
+	comment		 VARCHAR(512) NOT NULL,
+	customer_id_user BIGINT NOT NULL,
+	forum_if_forum	 BIGINT,
+	product_id_prod	 BIGINT NOT NULL,
+	product_version	 BIGINT NOT NULL,
 	PRIMARY KEY(if_forum)
+);
+
+CREATE TABLE notifications (
+	id		 BIGSERIAL,
+	message		 VARCHAR(512) NOT NULL,
+	time_stamp	 TIMESTAMP NOT NULL,
+	was_read	 BOOL NOT NULL,
+	customer_id_user BIGINT,
+	PRIMARY KEY(id,customer_id_user)
 );
 
 CREATE TABLE campaign (
@@ -234,10 +240,10 @@ ALTER TABLE to_order ADD CONSTRAINT to_order_fk1 FOREIGN KEY (buyer_customer_id_
 ALTER TABLE rating ADD CONSTRAINT rating_fk1 FOREIGN KEY (buyer_customer_id_user) REFERENCES buyer(customer_id_user);
 ALTER TABLE rating ADD CONSTRAINT rating_fk2 FOREIGN KEY (product_id_prod, product_version) REFERENCES product(id_prod, version);
 ALTER TABLE administrator ADD CONSTRAINT administrator_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
-ALTER TABLE forum_notifications ADD CONSTRAINT forum_notifications_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
-ALTER TABLE forum_notifications ADD CONSTRAINT forum_notifications_fk2 FOREIGN KEY (to_order_id_order) REFERENCES to_order(id_order);
-ALTER TABLE forum_notifications ADD CONSTRAINT forum_notifications_fk3 FOREIGN KEY (forum_notifications_if_forum) REFERENCES forum_notifications(if_forum);
-ALTER TABLE forum_notifications ADD CONSTRAINT forum_notifications_fk4 FOREIGN KEY (product_id_prod, product_version) REFERENCES product(id_prod, version);
+ALTER TABLE forum ADD CONSTRAINT forum_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
+ALTER TABLE forum ADD CONSTRAINT forum_fk2 FOREIGN KEY (forum_if_forum) REFERENCES forum(if_forum);
+ALTER TABLE forum ADD CONSTRAINT forum_fk3 FOREIGN KEY (product_id_prod, product_version) REFERENCES product(id_prod, version);
+ALTER TABLE notifications ADD CONSTRAINT notifications_fk1 FOREIGN KEY (customer_id_user) REFERENCES customer(id_user);
 ALTER TABLE campaign ADD CONSTRAINT campaign_fk1 FOREIGN KEY (administrator_customer_id_user) REFERENCES administrator(customer_id_user);
 ALTER TABLE coupon ADD CONSTRAINT coupon_fk1 FOREIGN KEY (buyer_customer_id_user) REFERENCES buyer(customer_id_user);
 ALTER TABLE coupon ADD CONSTRAINT coupon_fk2 FOREIGN KEY (campaign_id) REFERENCES campaign(id);
