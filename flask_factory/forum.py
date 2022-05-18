@@ -32,19 +32,25 @@ def make_comment(prod_id):
     questioner_id   = token["sub"]["id"]
 
     message = {}
+    query = f"select * from product where id_prod = {prod_id}"
 
     try:
 
         with db.get_data_base() as conn:
             with conn.cursor() as cursor: 
-                query = f"INSERT INTO forum (comment,customer_id_user, forum_id_forum, product_id_prod, product_version) VALUES ('{question}',{questioner_id},null,{prod_id},(select max(version) from product where id_prod={prod_id})); select currval('forum_id_forum_seq');"
                 cursor.execute(query)
-                
-                id_question = cursor.fetchall()[0]
+                if cursor.rowcount == 0:
+                    message["status"] = GET_ERROR_CODE
+                    message["error"]  = "Product does not exist"
+                else:
+                    query = f"INSERT INTO forum (comment,customer_id_user, forum_id_forum, product_id_prod, product_version) VALUES ('{question}',{questioner_id},null,{prod_id},(select max(version) from product where id_prod={prod_id})); select currval('forum_id_forum_seq');"
+                    cursor.execute(query)
+                    
+                    id_question = cursor.fetchall()[0]
 
-                message["status"]  = SUCCESS_CODE
-                message["message"] = "ORDER COMPLETED"
-                message["result"] = id_question[0]
+                    message["status"]  = SUCCESS_CODE
+                    message["message"] = "ORDER COMPLETED"
+                    message["result"] = id_question[0]
 
     except:
         return jsonify({
