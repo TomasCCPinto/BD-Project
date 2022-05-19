@@ -24,7 +24,7 @@ BEGIN
     INSERT INTO notifications
         (message, date, was_read, customer_id_user)
         VALUES
-        ('The product: ' || id_prod || ' was sold!', current_date, false, id_seller);
+        (FORMAT('The product: %s was sold!', id_prod), current_date, false, id_seller);
     return NEW;
 
 END;
@@ -64,12 +64,15 @@ BEGIN
     INTO id_prod;
 
 
-    INSERT INTO notifications
-        (message, date, was_read, customer_id_user)
-        VALUES
-        ('Someone made a question in your product: ' || id_prod || '!', current_date, false, id_seller);
-    return NEW;
+    IF id_seller IS NOT NULL THEN
 
+        INSERT INTO notifications
+            (message, date, was_read, customer_id_user)
+            VALUES
+            ( FORMAT('Someone made a question in your product: %s!', id_prod), current_date, false, id_seller);
+
+    END IF;
+    return NEW;
 END;
 $$;
 
@@ -81,3 +84,42 @@ CREATE TRIGGER notify_seller_question_trigger
     FOR EACH ROW
 EXECUTE PROCEDURE notify_seller_question();
 
+
+
+-- notification to user who receive a comment
+CREATE OR REPLACE FUNCTION notify_user_answer()
+    RETURNS TRIGGER
+    LANGUAGE PLPGSQL
+AS
+$$
+DECLARE
+    id_user integer;
+
+BEGIN
+    SELECT customer_id_user FROM forum WHERE id_forum =
+        (SELECT forum_id_forum
+            FROM forum
+            where id_forum = NEW.id_forum AND forum_id_forum IS NOT null)
+    INTO id_user;
+
+
+
+    IF id_user IS NOT NULL THEN
+        INSERT INTO notifications
+            (message, date, was_read, customer_id_user)
+        VALUES
+            ('Someone answered your question/comment', current_date, false, id_user);
+    END IF;
+    
+    return NEW;
+
+END;
+$$;
+
+DROP TRIGGER IF EXISTS notify_user_answer_trigger ON forum;
+
+CREATE TRIGGER notify_user_answer_trigger
+    AFTER INSERT
+    ON "forum"
+    FOR EACH ROW
+EXECUTE PROCEDURE notify_user_answer();
