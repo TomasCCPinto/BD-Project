@@ -179,7 +179,7 @@ def query_detailes(prod_id):
                     weight      = []
                     height      = []
                     colour      = []
-                    rating      = []
+                    rating      = 0
                     comments    = []
 
                     for row in rows:
@@ -189,7 +189,9 @@ def query_detailes(prod_id):
                         weight.append(row[4])
                         height.append(row[5])
                         colour.append(row[6])
-                        rating.append(row[7])
+                        rating = row[7]
+                        if rating == -1:
+                            rating = "No rating"
                         comments.append(row[8])
 
                     message["status"]      = SUCCESS_CODE
