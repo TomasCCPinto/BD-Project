@@ -6,6 +6,7 @@ from order import order
 from flask_jwt_extended import JWTManager
 from rating import rating
 from forum import forum
+from stats import stats
 
 def creat_app(test_config = None):
 
@@ -23,6 +24,7 @@ def creat_app(test_config = None):
     app.register_blueprint(order)
     app.register_blueprint(rating)
     app.register_blueprint(forum)
+    app.register_blueprint(stats)
 
     return app
 
