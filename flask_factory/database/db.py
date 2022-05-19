@@ -1,11 +1,11 @@
 import psycopg2 as psy
 
 
-USER = "postgres"
-PASS = "postgres"
+USER = "aulaspl"
+PASS = "aulaspl"
 HOST = "127.0.0.1"
 PORT = "5432"
-DBASE = "test"
+DBASE = "project"
 
 
 # return the conniction to a data base
