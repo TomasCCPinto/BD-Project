@@ -195,7 +195,7 @@ CREATE TABLE forum (
 CREATE TABLE notifications (
 	id		 BIGSERIAL,
 	message		 VARCHAR(512) NOT NULL,
-	time_stamp	 TIMESTAMP NOT NULL,
+	DATE	  DATE NOT NULL,
 	was_read	 BOOL NOT NULL,
 	customer_id_user BIGINT,
 	PRIMARY KEY(id,customer_id_user)
