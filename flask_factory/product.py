@@ -145,3 +145,72 @@ def update_product(prod_id):
 
 
     return jsonify(message)
+
+
+
+
+@product.route("/<int:prod_id>", methods = ["GET"])
+def query_detailes(prod_id):
+
+    message = {}
+
+
+
+    query = f"""select product.version, product.description, product.stock, product.price, product.weight, 
+                       product.height, product.colour, coalesce(avg(rating.rating), -1) rating, coalesce(forum.comment, 'No comments')
+                  from product  
+                  full join rating on product.id_prod = rating.product_id_prod 
+                  full join forum  on product.id_prod = forum.product_id_prod 
+                 where product.id_prod = {prod_id} 
+                 group by product.id_prod, product.version, forum.comment 
+                 order by product.version;"""
+
+
+    try:
+        with db.get_data_base() as conn:
+            with conn.cursor() as cursor:
+                cursor.execute(query)
+                rows = cursor.fetchall()
+
+                if cursor.rowcount!= 0:
+                    description = []
+                    stock       = []
+                    price       = []
+                    weight      = []
+                    height      = []
+                    colour      = []
+                    rating      = []
+                    comments    = []
+
+                    for row in rows:
+                        description.append(row[1])
+                        stock.append(row[2])
+                        price.append(row[3])
+                        weight.append(row[4])
+                        height.append(row[5])
+                        colour.append(row[6])
+                        rating.append(row[7])
+                        comments.append(row[8])
+
+                    message["status"]      = SUCCESS_CODE
+                    message["description"] = description
+                    message["stock"]       = stock
+                    message["price"]       = price
+                    message["weight"]      = weight
+                    message["height"]      = height
+                    message["colour"]      = colour
+                    message["rating"]      = rating
+                    message["comments"]    = comments
+
+                else:
+                    message["status"] = GET_ERROR_CODE
+                    message["error"]  = "No product with that id"
+
+    except:
+        return jsonify({
+            "status": POST_ERROR_CODE,
+            "error": "Something wrong happened"
+        })
+
+
+    return jsonify(message)
