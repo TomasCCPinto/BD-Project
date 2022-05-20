@@ -189,14 +189,3 @@ Tomás Pinto - tomaspinto@student.dei.uc.pt https://github.com/TC121121
 **URL** : `/api/product/add`  
 **Method** : `PUT`
 
-
-
-
-
-
-
-
-
-
-
-
