@@ -134,3 +134,69 @@ Now the `database` created, everything is ready to add tables and data
 João Moreira - joaomoreira@student.dei.uc.pt https://github.com/JoaoESmoreira
 
 Tomás Pinto - tomaspinto@student.dei.uc.pt https://github.com/TC121121
+
+
+# User Manual
+
+## Users Loggin
+**Description**: User authentication with username and password
+**URL** : `/api/login`  
+**Method** : `PUT`  
+
+##### Request Parameters
+```bash
+# In this case represent a super admin
+{
+   "username": "SuperAdmin", 
+   "password": "SuperAdmin"
+}
+```
+
+## Users Registration
+
+**Description**: Only admin can registe other admins and sellers. Everyone can register it self as buyer.
+**URL** : `/api/login`  
+**Method** : `PUT` 
+
+#### Register admin/seller
+
+```bash
+{
+    "username": "Put a name", 
+    "nif": 202023,
+    "email": "Put an email",
+    "adress": "Put an address", 
+    "password": "Put a pass", 
+    "token": "Token received in login",               # this token was passed in the loggin
+    "user_type": "administrator/seller"
+}
+```
+#### Register buyer
+
+```bash
+{
+    "username": "Put a name", 
+    "nif": 202023,
+    "email": "Put an email",
+    "adress": "Put an address", 
+    "password": "Put a pass", 
+}
+```
+
+## Product Creation
+
+**Description**: Only sellers can create products.
+**URL** : `/api/product/add`  
+**Method** : `PUT`
+
+
+
+
+
+
+
+
+
+
+
+
