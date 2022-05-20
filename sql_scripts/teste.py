@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import psycopg2 as psy
 
 def connetion_db():
-    db = psy.connect(user = 'aulaspl', password = 'aulaspl', host = '127.0.0.1', database = "project")
+    db = psy.connect(user = 'postgres', password = 'postgres', host = '127.0.0.1', database = "dbshop")
     db.autocommit = False
     
     return db

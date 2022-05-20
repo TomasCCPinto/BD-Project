@@ -57,11 +57,15 @@ def refresh_product(prod_id):
                 if cursor.rowcount == 0:
                     cursor.execute(queryProduct)
                     row          = cursor.fetchall()[-1]
-                    queryInsert  = f"INSERT INTO rating (rating, comment, buyer_customer_id_user, product_id_prod, product_version) VALUES ({rating}, '{comment}', {id_user}, {prod_id}, {row[0]});"
+                    print(row)
+                    queryInsert  = f"INSERT INTO rating (rating, comment, buyer_customer_id_user, product_id_prod, product_version) VALUES ({rating}, '{comment}', {id_user}, {prod_id}, 0);"
+                    print("here")
 
                     # check user bought the product
                     if cursor.rowcount != 0:
+                        print("here")
                         cursor.execute(queryInsert)
+                        print("here")
                         message["status"] = SUCCESS_CODE
 
                     else:

@@ -161,7 +161,7 @@ CREATE TABLE rating (
 	id_rating		 BIGSERIAL,
 	rating		 INTEGER NOT NULL,
 	comment		 VARCHAR(512),
-	buyer_customer_id_user BIGINT UNIQUE NOT NULL,
+	buyer_customer_id_user BIGINT NOT NULL,
 	product_id_prod	 BIGINT NOT NULL,
 	product_version	 BIGINT NOT NULL,
 	PRIMARY KEY(id_rating)

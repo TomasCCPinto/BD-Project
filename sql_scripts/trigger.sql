@@ -126,41 +126,44 @@ EXECUTE PROCEDURE notify_user_answer();
 
 
 
---CREATE OR REPLACE FUNCTION notify_user_order()
---    RETURNS TRIGGER
---    LANGUAGE PLPGSQL
---AS
---$$
---DECLARE
---    cr CURSOR FOR
---        SELECT pt.id_prod, qt.quantity, pt.type, pt.price, od.total, od.buyer_customer_id_user
---            FROM to_order AS od
---            INNER JOIN quantity AS qt
---                ON od.id_order = qt.to_order_id_order
---            INNER JOIN product AS pt
---                ON pt.id_prod = qt.product_id_prod
---            WHERE od.id_order = NEW.id_order AND qt.product_version = pt.version;
---
---BEGIN
---
---    for r in cr loop
---
---            INSERT INTO notifications
---                (message, date, was_read, customer_id_user)
---            VALUES
---                (FORMAT('%s, %s', r.id_prod, r.quantity), current_date, false, r.buyer_customer_id_user);
---
---    end loop;
---    
---    CLOSE cr;
---    RETURN NEW;
---END;
---$$;
---
---DROP TRIGGER IF EXISTS notify_user_order_trigger ON to_order;
---
---CREATE TRIGGER notify_user_order_trigger
---    AFTER INSERT
---    ON "to_order"
---    FOR EACH ROW
---EXECUTE PROCEDURE notify_user_order();
+CREATE OR REPLACE FUNCTION notify_user_order()
+    RETURNS TRIGGER
+    LANGUAGE PLPGSQL
+AS
+$$
+DECLARE
+    cr CURSOR FOR
+        SELECT pt.id_prod, qt.quantity, pt.type, pt.price, od.total, od.buyer_customer_id_user
+            FROM to_order AS od
+            INNER JOIN quantity AS qt
+                ON od.id_order = qt.to_order_id_order
+            INNER JOIN product AS pt
+                ON pt.id_prod = qt.product_id_prod
+            WHERE od.id_order = NEW.id_order AND qt.product_version = pt.version;
+
+BEGIN
+
+    for r in cr loop
+
+            INSERT INTO notifications
+                (message, date, was_read, customer_id_user)
+            VALUES
+                (FORMAT('%s, %s', r.id_prod, r.quantity), current_date, false, r.buyer_customer_id_user);
+
+    end loop;
+    
+    CLOSE cr;
+    RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS notify_user_order_trigger ON to_order;
+
+CREATE TRIGGER notify_user_order_trigger
+    AFTER INSERT
+    ON "to_order"
+    FOR EACH ROW
+EXECUTE PROCEDURE notify_user_order();
+
+
+DROP TRIGGER IF EXISTS notify_user_order_trigger ON to_order;
