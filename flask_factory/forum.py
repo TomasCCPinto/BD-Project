@@ -108,6 +108,7 @@ def anwser_question(prod_id, parent_question_id):
 
                     if row != 0:
                         insertQry = f"INSERT INTO forum (comment, customer_id_user, forum_id_forum, product_id_prod, product_version) VALUES ('{question}', {id_user}, {parent_question_id}, {prod_id}, {version}); SELECT currval('forum_id_forum_seq');"
+                        print("HERE")
                         cursor.execute(insertQry)
                         print("HERE")
                         row = cursor.fetchall()[0]
