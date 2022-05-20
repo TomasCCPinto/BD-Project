@@ -40,8 +40,7 @@ def add_order():
                 cursor.execute(query)
 
                 if cursor.rowcount == 1:
-                    #the id increments even when the program fails so the number gets higher than expected
-                    query_order = f"INSERT INTO to_order (buyer_customer_id_user,month,year) values ({id_user},(date_part('month', (select current_date))),(date_part('year', (select current_date)))); select currval('to_order_id_order_seq');"
+                    query_order = f"INSERT INTO to_order (order_date,buyer_customer_id_user) values ((select current_date),{id_user}); select currval('to_order_id_order_seq');"
                     cursor.execute(query_order)
                     id_order = cursor.fetchall()[0] 
                     
