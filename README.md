@@ -14,13 +14,14 @@ To run the project correclty, some techonologies is required. So that follow sim
    - Flask
    - Psycopg2
    - werkzeug.security
+   - flask_jwt_extended
 ##### Other Technologies
    - Onda
    - Postman
 
 
 #### Tips to Dependencies
-Before you do something verify what you need to install.
+Before you do something, check this shell commands and verify what you need to install.
 
 ```bash
 # check if already installed:
@@ -49,6 +50,7 @@ sudo pip install flask
 sudo pip install werkzeug
 sudo apt install libpq-dev                # In case you haven't this library, you need to install (assume gcc is installed in OS by default)
 sudo pip install psycopg2
+pip install flask-jwt-extended
 ```
 
 ##### pSQL
@@ -81,7 +83,7 @@ sudo apt install postman
 
 
 # DataBase Setup
-To setup all configs of your database, you need to access your postgreSQL DMBS by `psql` or `pgadmin4`.
+To setup all configs of the database, you need to access your postgreSQL DMBS by `psql` or `pgadmin4`.
 We used the `psql client` with the follow command:
 
 ```bash
@@ -92,7 +94,7 @@ We used the `psql client` with the follow command:
 psql -h localhost -p 5432 -U postgres
 ```
 
-After acess, let's create a `database` where are all tables and work about `database design` and connect to him:
+After acess, let's create a `database` where is stored all tables and work about `database design` and connect to him:
 
 ```bash
 CREATE DATABASE dbshop;
@@ -118,9 +120,15 @@ Now the `database` created, everything is ready to add tables and data
 ```bash
 \c dbshop           # connect to dbase
 \i schema.sql       # create the tables schemas
-\i insert.sql         # add data
+\i insert.sql       # add data
+\i trigger.sql      # create all triggers
+
+\i drop_tables.sql  # just in case if you want to drop all tables
 ```
 
+`Note:` In case you use `pgadmin4` insted of the terminal, bellow follow the links that will help you to build everything.
+   - [Create database](https://www.pgadmin.org/docs/pgadmin4/development/database_dialog.html)
+   - [Run a script](https://linuxhint.com/run-sql-file-postgresql/)
 
 # Co-workers
 João Moreira - joaomoreira@student.dei.uc.pt https://github.com/JoaoESmoreira
