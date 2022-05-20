@@ -79,9 +79,9 @@ insert into product (id_prod, version, type ,description, height, weight, colour
 insert into product (id_prod, version, type ,description, height, weight, colour, stock, price, seller_customer_id_user) values (3, 3, 'Smartphone', 'hrvqtkdtekozmnivybkoathhpnjpwjlzvdaoqp',20 ,30,'red' ,19, 719, 23);
 
 
-insert into to_order (buyer_customer_id_user,month,year,total) values (16,3,2022,1622);
-insert into to_order (buyer_customer_id_user,month,year,total) values (15,3,2022,2784);
-insert into to_order (buyer_customer_id_user,month,year,total) values (14,3,2022,4800);
+insert into to_order (buyer_customer_id_user,order_date,total) values (16,'2022-5-20',1622);
+insert into to_order (buyer_customer_id_user,order_date,total) values (15,'2022-3-20',2784);
+insert into to_order (buyer_customer_id_user,order_date,total) values (14,'2022-1-20',4800);
 
 
 insert into quantity (quantity, to_order_id_order, product_id_prod, product_version) values ( 2, 1, 3, 0);
@@ -126,40 +126,4 @@ insert into rating (rating, comment, buyer_customer_id_user, product_id_prod, pr
 --insert into forum_notifications (if_forum, comment, notifications_id, notifications_message, notifications_time_stamp, notifications_was_read, customer_id_user, to_order_id_order, forum_notifications_id_forum, product_id_prod) values (28, 'ntichgiuxodxrfbkefngjdaggpypjeogjzcssdk', 28, 'raeuwagsrcyjgptjevterlcgfivtbfhlablpdfw', '9:28 AM', false, 28, 28, 28, 28);
 --insert into forum_notifications (if_forum, comment, notifications_id, notifications_message, notifications_time_stamp, notifications_was_read, customer_id_user, to_order_id_order, forum_notifications_id_forum, product_id_prod) values (29, 'mfrhawpwqxbutsdnbsgbdedkfepzsfulbhswfyc', 29, 'nybylwlwzstelfqxedfgjfelpzdhefeuzzfmuhx', '12:15 AM', false, 29, 29, 29, 29);
 --insert into forum_notifications (if_forum, comment, notifications_id, notifications_message, notifications_time_stamp, notifications_was_read, customer_id_user, to_order_id_order, forum_notifications_id_forum, product_id_prod) values (30, 'axrvixzdrexdozdfwmfshrqtkefcyfospjlozfs', 30, 'muipysvavwrmuvimmlwtsdxabfhjjzsdjqgkvzf', '6:12 PM', false, 30, 30, 30, 30);
---
---
---insert into coupon (id, purchase_date, buyer_customer_id_user, campaign_id) values (1, false, 1, 1);
---insert into coupon (id, purchase_date, buyer_customer_id_user, campaign_id) values (2, true, 2, 2);
---insert into coupon (id, purchase_date, buyer_customer_id_user, campaign_id) values (3, true, 3, 3);
---insert into coupon (id, purchase_date, buyer_customer_id_user, campaign_id) values (4, false, 4, 4);
---insert into coupon (id, purchase_date, buyer_customer_id_user, campaign_id) values (5, false, 5, 5);
---insert into coupon (id, purchase_date, buyer_customer_id_user, campaign_id) values (6, true, 6, 6);
---insert into coupon (id, purchase_date, buyer_customer_id_user, campaign_id) values (7, true, 7, 7);
---insert into coupon (id, purchase_date, buyer_customer_id_user, campaign_id) values (8, true, 8, 8);
---insert into coupon (id, purchase_date, buyer_customer_id_user, campaign_id) values (9, false, 9, 9);
---insert into coupon (id, purchase_date, buyer_customer_id_user, campaign_id) values (10, false, 10, 10);
---
---
---insert into campaign (id, data_begin, data_end, n_coupon, n_coupon_used, discount, expiration_days, administrator_customer_id_user) values (1, 80, 49, 56, 145, 1);
---insert into campaign (id, data_begin, data_end, n_coupon, n_coupon_used, discount, expiration_days, administrator_customer_id_user) values (2, 71, 24, 27, 298, 2);
---insert into campaign (id, data_begin, data_end, n_coupon, n_coupon_used, discount, expiration_days, administrator_customer_id_user) values (3, 14, 55, 7, 114, 3);
---insert into campaign (id, data_begin, data_end, n_coupon, n_coupon_used, discount, expiration_days, administrator_customer_id_user) values (4, 4, 72, 71, 9, 4);
---insert into campaign (id, data_begin, data_end, n_coupon, n_coupon_used, discount, expiration_days, administrator_customer_id_user) values (5, 20, 83, 52, 180, 5);
---insert into campaign (id, data_begin, data_end, n_coupon, n_coupon_used, discount, expiration_days, administrator_customer_id_user) values (6, 55, 82, 93, 345, 6);
---insert into campaign (id, data_begin, data_end, n_coupon, n_coupon_used, discount, expiration_days, administrator_customer_id_user) values (7, 30, 38, 38, 279, 7);
---insert into campaign (id, data_begin, data_end, n_coupon, n_coupon_used, discount, expiration_days, administrator_customer_id_user) values (8, 97, 82, 27, 61, 8);
---insert into campaign (id, data_begin, data_end, n_coupon, n_coupon_used, discount, expiration_days, administrator_customer_id_user) values (9, 94, 54, 24, 150, 9);
---insert into campaign (id, data_begin, data_end, n_coupon, n_coupon_used, discount, expiration_days, administrator_customer_id_user) values (10, 77, 48, 97, 257, 10);
---
---
---insert into buyer_campaign (buyer_customer_id_user, campaign_id) values (1, 1);
---insert into buyer_campaign (buyer_customer_id_user, campaign_id) values (2, 2);
---insert into buyer_campaign (buyer_customer_id_user, campaign_id) values (3, 3);
---insert into buyer_campaign (buyer_customer_id_user, campaign_id) values (4, 4);
---insert into buyer_campaign (buyer_customer_id_user, campaign_id) values (5, 5);
---insert into buyer_campaign (buyer_customer_id_user, campaign_id) values (6, 6);
---insert into buyer_campaign (buyer_customer_id_user, campaign_id) values (7, 7);
---insert into buyer_campaign (buyer_customer_id_user, campaign_id) values (8, 8);
---insert into buyer_campaign (buyer_customer_id_user, campaign_id) values (9, 9);
---insert into buyer_campaign (buyer_customer_id_user, campaign_id) values (10, 10);
 --

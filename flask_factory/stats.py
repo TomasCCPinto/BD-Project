@@ -6,29 +6,40 @@ from status.status import *
 import database.db as db
 
 
-stats = Blueprint("stats", __name__, url_prefix="/api/")
+stats = Blueprint("stats", __name__, url_prefix="/api/report")
 
-@stats.route("/report/<int:year>", methods=["GET"])
-def estatisticas(year):
+@stats.route("/year", methods=["GET"])
+def estatisticas():
     
     message={}
 
-    query = f"""select month, sum(total) , count(*)  from to_order where year = {year} group by month """
+    query = f"""SELECT
+                    DATE_TRUNC('month',order_date),
+                    COUNT(total) ,
+	                sum(total)	   
+                FROM to_order
+                where (date_part('year', (to_order.order_date)) < date_part('year', (select current_date)) and date_part('month', (to_order.order_date)) > date_part('month', (select current_date))) 
+                        or (date_part('year', (to_order.order_date)) = date_part('year', (select current_date)) and date_part('month', (to_order.order_date)) <= date_part('month', (select current_date)) )  
+                GROUP BY DATE_TRUNC('month',order_date);"""
 
     try:
         with db.get_data_base() as conn:
             with conn.cursor() as cursor:
+                
                 cursor.execute(query)
+                
                 rows = cursor.fetchall()
                 
                 results=[]
                 for row in rows:
+                    line = str(row[0]).split('-')
+                    
                     res={}
-                    res["month"]=row[0]
-                    res["total_value"]=row[1]
-                    res["orders"]=row[2]
+                    res["month"]=line[1]+'-'+line[0]
+                    res["total_value"]=row[2]
+                    res["orders"]=row[1]
                     results.append(res)
-
+                    
                 message["status"] = SUCCESS_CODE
                 message["results"] = results
                 
