@@ -1,3 +1,7 @@
+
+
+
+
 # BD-Project
 Project for the DataBase subject.
 
@@ -130,20 +134,14 @@ Now the `database` created, everything is ready to add tables and data
    - [Create database](https://www.pgadmin.org/docs/pgadmin4/development/database_dialog.html)
    - [Run a script](https://linuxhint.com/run-sql-file-postgresql/)
 
-# Co-workers
-João Moreira - joaomoreira@student.dei.uc.pt https://github.com/JoaoESmoreira
-
-Tomás Pinto - tomaspinto@student.dei.uc.pt https://github.com/TC121121
-
 
 # User Manual
-
 ## Users Loggin
-**Description**: User authentication with username and password
-**URL** : `/api/login`  
+**Description**: User authentication with username and password. It was created a superadmin to register other admins and sellers.
+
+**URL** : `/api/login`
 **Method** : `PUT`  
 
-##### Request Parameters
 ```bash
 # In this case represent a super admin
 {
@@ -155,37 +153,153 @@ Tomás Pinto - tomaspinto@student.dei.uc.pt https://github.com/TC121121
 ## Users Registration
 
 **Description**: Only admin can registe other admins and sellers. Everyone can register it self as buyer.
-**URL** : `/api/login`  
-**Method** : `PUT` 
+
+**URL** : `/api/register`  
+**Method** : `POST` 
 
 #### Register admin/seller
 
 ```bash
 {
-    "username": "Put a name", 
-    "nif": 202023,
-    "email": "Put an email",
-    "adress": "Put an address", 
-    "password": "Put a pass", 
-    "token": "Token received in login",               # this token was passed in the loggin
-    "user_type": "administrator/seller"
+   "username": "Put a name", 
+   "nif": 0,
+   "email": "Put an email",
+   "adress": "Put an address", 
+   "password": "Put a pass", 
+   "token": "Token received in login",               # this token was passed in the loggin
+   "user_type": "administrator/seller"
 }
 ```
 #### Register buyer
 
 ```bash
 {
-    "username": "Put a name", 
-    "nif": 202023,
-    "email": "Put an email",
-    "adress": "Put an address", 
-    "password": "Put a pass", 
+   "username": "Put a name", 
+   "nif": 0,
+   "email": "Put an email",
+   "adress": "Put an address", 
+   "password": "Put a pass", 
 }
 ```
 
 ## Product Creation
 
 **Description**: Only sellers can create products.
+
 **URL** : `/api/product/add`  
+**Method** : `POST`
+
+```bash
+{
+   "type":"Put a type",
+   "description":"Put a description",
+   "height":0,
+   "weight":0,
+   "colour":"Put a color",
+   "stock":0,
+   "price":0,
+   "token": "Token received in login",               # this token was passed in the loggin
+}
+```
+
+## Update product details
+
+**Description**: Only sellers can update products.
+
+**URL** : `/api/product/{prod_id}`
 **Method** : `PUT`
+
+```bash
+{
+   "description": "new description", 
+   "height": "new height",
+   "weight": "new weight",
+   "colour": "new colour", 
+   "price": "new price",
+   "token": "Token received in login",               # this token was passed in the loggin
+}
+```
+
+## Obtain the product details
+
+**Description**: All users can see the product details. Obtain details of all versions of a product.
+
+**URL** : `/api/product/{product_id}`  
+**Method** : `GET`
+
+```bash
+   # No input
+```
+
+## Do a order
+
+**Description**: Only buyers can make a order.
+
+**URL** : `/api/order`
+**Method** : `PUT`
+
+```bash
+{
+   "cart": [[Prod1, Quantity1], [Prod2, Quantity2], ...],
+   "token": "Token received in login",               # this token was passed in the loggin
+}
+```
+
+## Rate and comment a product
+
+**Description**: A buyer can rate and comment about a product that he/she bought.
+
+**URL** : `/api/rating/{product_id}`
+**Method** : `POST`
+
+```bash
+{
+    "rating": 0,
+    "comment":"Put a comment",
+    "token": "Token received in login",               # this token was passed in the loggin
+}
+```
+
+
+## Comment/Question about a product in users forum
+
+**Description**: All user can do a question or a comment about a product.
+
+#### Leave your question
+**URL** : `/api/questions/{prod_id}`
+
+**Method** : `POST`
+```bash
+{
+   "question": "Put a question",
+   "token": "Token received in login",               # this token was passed in the loggin
+}
+```
+
+#### Answer a question
+**URL** : `/api/questions/{prod_id}/{comment_id}`
+
+**Method** : `POST`
+```bash
+{
+   "question": "Put a question",
+   "token": "Token received in login",               # this token was passed in the loggin
+}
+```
+
+## Sales statistics of the last 12 months
+
+**Description**: Obtain the sales statistics of the last 12 months per month, including the number of sales and total value. 
+
+**URL** : `/api/rating/{product_id}`
+**Method** : `POST`
+
+```bash
+   # No input
+```
+
+# Co-workers
+João Moreira - joaomoreira@student.dei.uc.pt https://github.com/JoaoESmoreira
+
+Tomás Pinto - tomaspinto@student.dei.uc.pt https://github.com/TC121121
 
