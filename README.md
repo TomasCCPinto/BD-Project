@@ -143,10 +143,16 @@ Now the `database` created, everything is ready to add tables and data
 **Method** : `PUT`  
 
 ```bash
+# Input value
 # In this case represent a super admin
 {
    "username": "SuperAdmin", 
    "password": "SuperAdmin"
+}
+# Return value
+{
+   "status": 200,
+   "token": "TOKEN YOU WILL USE AS INPUT"
 }
 ```
 
@@ -160,6 +166,7 @@ Now the `database` created, everything is ready to add tables and data
 #### Register admin/seller
 
 ```bash
+# Input value
 {
    "username": "Put a name", 
    "nif": 0,
@@ -169,16 +176,29 @@ Now the `database` created, everything is ready to add tables and data
    "token": "Token received in login",               # this token was passed in the loggin
    "user_type": "administrator/seller"
 }
+# Return value
+{
+    "message": "Regist completed",
+    "result": user_id,
+    "status": 200
+}
 ```
 #### Register buyer
 
 ```bash
+# Input value
 {
    "username": "Put a name", 
    "nif": 0,
    "email": "Put an email",
    "adress": "Put an address", 
    "password": "Put a pass", 
+}
+# Return value
+{
+    "message": "Regist completed",
+    "result": user_id,
+    "status": 200
 }
 ```
 
@@ -190,6 +210,7 @@ Now the `database` created, everything is ready to add tables and data
 **Method** : `POST`
 
 ```bash
+# Input value
 {
    "type":"Put a type",
    "description":"Put a description",
@@ -199,6 +220,12 @@ Now the `database` created, everything is ready to add tables and data
    "stock":0,
    "price":0,
    "token": "Token received in login",               # this token was passed in the loggin
+}
+# Return value
+{
+    "message": "Product added successfully",
+    "results": id_prod,
+    "status": 200
 }
 ```
 
@@ -211,12 +238,18 @@ Now the `database` created, everything is ready to add tables and data
 
 ```bash
 {
+# Input value
    "description": "new description", 
    "height": "new height",
    "weight": "new weight",
    "colour": "new colour", 
    "price": "new price",
    "token": "Token received in login",               # this token was passed in the loggin
+}
+# Return value
+{
+    "message": "Product values updated",
+    "status": 200
 }
 ```
 
@@ -229,6 +262,40 @@ Now the `database` created, everything is ready to add tables and data
 
 ```bash
    # No input
+
+   # Return value
+   {
+    "colour": [
+        "colour1",
+        ...
+    ],
+    "comments": [
+        "comment1",
+        ...
+    ],
+    "description": [
+        "description1",
+        ...
+    ],
+    "height": [
+        0,
+        ...
+    ],
+    "price": [
+        0,
+        ...
+    ],
+    "rating": "0",
+    "status": 200,
+    "stock": [
+        0,
+        ...
+    ],
+    "weight": [
+        0,
+        ...
+    ]
+}
 ```
 
 ## Do a order
@@ -239,9 +306,18 @@ Now the `database` created, everything is ready to add tables and data
 **Method** : `PUT`
 
 ```bash
+# Input value
 {
+   
    "cart": [[Prod1, Quantity1], [Prod2, Quantity2], ...],
    "token": "Token received in login",               # this token was passed in the loggin
+
+}
+# Return value
+{
+   "message": "ORDER COMPLETED",
+   "result": order_id,                     #order id
+   "status": 200
 }
 ```
 
@@ -253,10 +329,16 @@ Now the `database` created, everything is ready to add tables and data
 **Method** : `POST`
 
 ```bash
+# Input value
 {
     "rating": 0,
     "comment":"Put a comment",
     "token": "Token received in login",               # this token was passed in the loggin
+}
+
+# Return value
+{
+    "status": 200
 }
 ```
 
@@ -269,10 +351,17 @@ Now the `database` created, everything is ready to add tables and data
 **URL** : `/api/questions/{prod_id}`
 
 **Method** : `POST`
-```bash
+```bashs
+# Input values
 {
    "question": "Put a question",
    "token": "Token received in login",               # this token was passed in the loggin
+}
+#return values
+{
+    "message": "Question done",
+    "result": comment_id,
+    "status": 200
 }
 ```
 
@@ -281,9 +370,16 @@ Now the `database` created, everything is ready to add tables and data
 
 **Method** : `POST`
 ```bash
+# Input values
 {
    "question": "Put a question",
    "token": "Token received in login",               # this token was passed in the loggin
+}
+# Return values
+{
+    "message": "Answered successfully",
+    "result": comment_id,
+    "status": 200
 }
 ```
 
@@ -295,7 +391,39 @@ Now the `database` created, everything is ready to add tables and data
 **Method** : `POST`
 
 ```bash
-   # No input
+# No input
+
+# Return value
+{
+    "results": [
+        {
+            "month": "07-2021",
+            "orders": 1,
+            "total_value": "1622"
+        },
+        {
+            "month": "09-2021",
+            "orders": 2,
+            "total_value": "2144"
+        },
+        {
+            "month": "03-2022",
+            "orders": 1,
+            "total_value": "2784"
+        },
+        {
+            "month": "01-2022",
+            "orders": 1,
+            "total_value": "4800"
+        },
+        {
+            "month": "05-2022",
+            "orders": 5,
+            "total_value": "14717"
+        }
+    ],
+    "status": 200
+}
 ```
 
 # Co-workers
