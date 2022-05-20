@@ -8,6 +8,7 @@ from rating import rating
 from forum import forum
 from stats import stats
 
+
 def creat_app(test_config = None):
 
     app = Flask(__name__)
@@ -25,6 +26,7 @@ def creat_app(test_config = None):
     app.register_blueprint(rating)
     app.register_blueprint(forum)
     app.register_blueprint(stats)
+    
 
     return app
 
