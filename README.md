@@ -1,7 +1,3 @@
-
-
-
-
 # BD-Project
 Project for the DataBase subject.
 
@@ -10,7 +6,7 @@ To run the project correclty, some techonologies is required. So that follow sim
 
 ## Technologies Used
 ##### Programming Languages
-   - Python
+   - Python 
    - SQL and PL/pgSQL
 ##### Database Management System
    - PostgreSQL
@@ -55,6 +51,7 @@ sudo pip install werkzeug
 sudo apt install libpq-dev                # In case you haven't this library, you need to install (assume gcc is installed in OS by default)
 sudo pip install psycopg2
 pip install flask-jwt-extended
+
 ```
 
 ##### pSQL
@@ -136,6 +133,10 @@ Now the `database` created, everything is ready to add tables and data
 
 
 # User Manual
+before starting -> run the script test.py to encript the first users passwords
+
+to run the project -> python3 main.py
+
 ## Users Loggin
 **Description**: User authentication with username and password. It was created a superadmin to register other admins and sellers.
 
@@ -430,4 +431,3 @@ Now the `database` created, everything is ready to add tables and data
 João Moreira - joaomoreira@student.dei.uc.pt https://github.com/JoaoESmoreira
 
 Tomás Pinto - tomaspinto@student.dei.uc.pt https://github.com/TC121121
-
