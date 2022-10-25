@@ -430,4 +430,4 @@ to run the project -> python3 main.py
 # Co-workers
 João Moreira - joaomoreira@student.dei.uc.pt https://github.com/JoaoESmoreira
 
-Tomás Pinto - https://github.com/TomasCCPinto
+Tomás Pinto - tomaspinto@student.dei.uc.pt https://github.com/TomasCCPinto
